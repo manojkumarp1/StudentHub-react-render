@@ -1,6 +1,6 @@
 import React from 'react'
 import './Navbar.css'
-import { Link, NavLink } from 'react-router-dom'
+import {  NavLink } from 'react-router-dom'
 
 function Navbar() {
 
@@ -56,7 +56,7 @@ function Navbar() {
         }
       </div>
       <div className='nav-logout'>
-        Logout
+        Login as Admin
       </div>
     </div>
   )
