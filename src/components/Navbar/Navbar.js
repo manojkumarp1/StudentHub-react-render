@@ -1,5 +1,6 @@
 import React from 'react'
 import './Navbar.css'
+import { Link, NavLink } from 'react-router-dom'
 
 function Navbar() {
 
@@ -33,6 +34,7 @@ function Navbar() {
       navRoute:'/report'
     }
   ]
+
   
   return (
     <div className='nav-main'>
@@ -45,11 +47,11 @@ function Navbar() {
         </div>
         {
           navigationData.map((data,index) => (
-            <div key={index} className='nav-names'>
+            <NavLink className='nav-names' key={index} to={data.navRoute}>
                 {
                   data.navName
                 }
-            </div>
+            </NavLink>
           ))
         }
       </div>

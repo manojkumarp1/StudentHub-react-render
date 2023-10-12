@@ -1,0 +1,11 @@
+.app-main{
+  display: flex;
+}
+
+.app-nav{
+  width: 20%;
+}
+.app-content{
+  width: 80%;
+  padding: 20px;
+}
