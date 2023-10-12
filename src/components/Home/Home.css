@@ -1,0 +1,93 @@
+/* Use variables for consistent design and easy modification */
+:root {
+    --primary-bg-color: #28a745; /* green, for the btn-success */
+    --primary-bg-hover: blue; /* darker green, for hover effect */
+    --input-bg-color: #f4f5f7;
+    --input-border-color: #d4d5d7;
+    --input-border-focus: #c3c4c6;
+    --input-shadow-focus: 0px 0px 5px rgba(60, 64, 67, 0.2);
+  }
+  
+  .searchInput_Container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* spacing between input and button */
+  }
+  
+  #searchInput {
+    flex-grow: 1; /* take maximum available space */
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid var(--input-border-color);
+    background-color: var(--input-bg-color);
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #searchInput:focus {
+    border-color: var(--input-border-focus);
+    box-shadow: var(--input-shadow-focus);
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-success {
+    background-color: var(--primary-bg-color);
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-success:hover {
+    background-color: var(--primary-bg-hover);
+  }
+  /* ... (existing styles) ... */
+  .scroll-container {
+    display: flex;       /* Lay images out horizontally */
+    overflow-x: auto;    /* Allow horizontal scrolling */
+    width: 100%;         /* Take full width of the viewport */
+    gap: 10px;           /* Space between images */
+    
+    /* Hide default scrollbars (but allow scrolling) */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+.scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.image-wrapper {
+    flex: 0 0 calc(33.33% - 10px); /* Each wrapper takes up roughly 1/3 of the container, minus the gap */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center the caption and the image */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds a shadow for a touch of depth */
+    border-radius: 10px; /* Optional: rounds the corners of each image wrapper */
+    overflow: hidden;    /* Makes sure the image corners also get rounded */
+}
+
+.scroll-container img {
+    width: 100%;
+    display: block; /* Removes any unwanted space below the image */
+    object-fit: cover; 
+}
+
+.caption {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+
