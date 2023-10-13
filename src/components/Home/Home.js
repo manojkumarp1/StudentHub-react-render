@@ -1,45 +1,124 @@
-import React from 'react';
+import React from "react";
 import "./Home.css";
+import Slider from "react-slick";
+
+
+// These functions are used for custom slide bars
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "#12a89d", borderRadius:'50%',padding:'7px 7px',position:'absolute',right:'-10px' }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "none" }}
+      onClick={onClick}
+    />
+  );
+}
+
+
 function Home() {
-    return(
-        <div>
-        <div className="searchInput_Container">
+
+  // These are inbuilt slick operations which can be used
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+  };
+
+  return (
+    <div>
+      <div className="searchInput_Container">
         <input
           id="searchInput"
           type="text"
           placeholder="Type here to search courses"
-        
         />
-        <button
-          className="btn btn-success w-10"
-          type="submit"
-        >
+        <button className="btn btn-success w-10" type="submit">
           Search
         </button>
-        
-      </div>    
+      </div>
       <h2>Learnings</h2>
-      <div class="scroll-container">
-  <div class="image-wrapper">
-    <img src='https://www.universitytimes.in/wp-content/uploads/2022/06/Assignment-696x464.jpg' alt='Assignment'/>
-    <div class="caption"><h3>Assignments</h3></div>
-  </div>
-  <div class="image-wrapper">
-    <img src='https://img.freepik.com/premium-vector/quiz-symbol-neon-illustration-night-isolated-design-elements_168425-181.jpg    ' alt='Quiz' height="61.5%"/>
-    <div class="caption"><h3>Quizzes</h3></div>
-  </div>
-  <div class="image-wrapper">
-    <img src='https://uploads-ssl.webflow.com/60b8bc3a2747671228dc5a32/6177ca0a1c7d002ff87054c0_post%2016%20young%20people%20wellbeing%20workshop-p-1080.jpeg' alt='Workshop'/>
-    <div class="caption"><h3>Workshops</h3></div>
-  </div>
-  <div class="image-wrapper">
-    <img src='https://uploads-ssl.webflow.com/60b8bc3a2747671228dc5a32/6177ca0a1c7d002ff87054c0_post%2016%20young%20people%20wellbeing%20workshop-p-1080.jpeg' alt='Workshop'/>
-    <div class="caption"><h3>Workshops</h3></div>
-  </div>
-
-</div>
-    </div>  
-      
-    )
+      <Slider {...settings}>
+        <div class="image-wrapper">
+          <img
+            src="https://www.universitytimes.in/wp-content/uploads/2022/06/Assignment-696x464.jpg"
+            alt="Assignment"
+          />
+          <div class="caption">
+            Assignments
+          </div>
+        </div>
+        <div class="image-wrapper">
+          <img
+            src="https://img.freepik.com/premium-vector/quiz-symbol-neon-illustration-night-isolated-design-elements_168425-181.jpg    "
+            alt="Quiz"
+          />
+          <div class="caption">
+            Quizzes
+          </div>
+        </div>
+        <div class="image-wrapper">
+          <img
+            src="https://uploads-ssl.webflow.com/60b8bc3a2747671228dc5a32/6177ca0a1c7d002ff87054c0_post%2016%20young%20people%20wellbeing%20workshop-p-1080.jpeg"
+            alt="Workshop"
+          />
+          <div class="caption">
+            Workshops
+          </div>
+        </div>
+        <div class="image-wrapper">
+          <img
+            src="https://uploads-ssl.webflow.com/60b8bc3a2747671228dc5a32/6177ca0a1c7d002ff87054c0_post%2016%20young%20people%20wellbeing%20workshop-p-1080.jpeg"
+            alt="Workshop"
+          />
+          <div class="caption">
+            Workshops
+          </div>
+        </div>
+      </Slider>
+    </div>
+  );
 }
 export default Home;

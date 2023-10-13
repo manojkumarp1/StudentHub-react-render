@@ -46,14 +46,6 @@
 }
 
 
-.image-wrapper img {
-    margin-top: 20px;
-    width: 180px; /* example width, you can adjust this value */
-    height: 120px; /* example height, you can adjust this value */
-    object-fit: cover; /* this ensures images cover the dimensions without warping */
-    border: 1px solid #747474;
-}
-
 .template h3 {
     margin: 10px 0;
     font-size: 18px;
