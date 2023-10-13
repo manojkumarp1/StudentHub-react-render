@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     gap: 10px; /* space between input and button */
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     width: 100%;
 }
 
@@ -25,6 +25,10 @@
 
 #searchInput:focus {
     border: 1px solid #007BFF;
+}
+
+#courses-avai{
+    margin: 10px;
 }
 
 .btn-success {
@@ -57,23 +61,34 @@
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-.scroll-container {
-    display: flex;       /* Lay images out horizontally */
-    overflow-x: auto;    /* Allow horizontal scrolling */
-    width: 100%;         /* Take full width of the viewport */
-    gap: 10px;           /* Space between images */
-    
-    /* Hide default scrollbars (but allow scrolling) */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
-
+.course-image-wrapper{
+    height: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    border-radius: 10px; 
+    overflow: hidden;    
 }
 
-.scroll-container::-webkit-scrollbar {
-    
-    height: 8px;
+.course-image-wrapper img{
+  width: 100%;
+  height: 55%;
+  object-fit: cover;
 }
 
-.scroll-container::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.1);
+.course-details{
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+.course-name{
+    font-size: 17px;
+    font-size: 500;
+    text-align: center;
+}
+.course-description,.course-duration{
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
 }

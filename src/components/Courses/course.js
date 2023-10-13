@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./course.css";
+import settings, { carousel } from "../common-components/slick";
+import Slider from "react-slick";
 
 function Course() {
   const [originalData, setOriginalData] = useState([]);
@@ -22,7 +24,6 @@ function Course() {
       })
       .catch((err) => console.log(err));
   }, []);
-   
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -38,7 +39,7 @@ function Course() {
         <div>
           <br />
         </div>
-       
+
         <div></div>
       </div>
       <div className="templateContainer">
@@ -60,23 +61,27 @@ function Course() {
             Search
           </button>
         </div>
-        <h2>Courses Available</h2>
-        <div className="scroll-container">
+        <h2 id="courses-avai">Courses Available</h2>
+        <Slider {...settings}>
           {filteredData.length > 0 ? (
             filteredData.map((val) => {
               return (
-                <div className="image-wrapper" key={val.id}>
-                <Link to={'/enrollcourse'}>
-                     <img src={val.imgurl} alt="" />
-                </Link>     
-                 <center><h3>{val.coursename}</h3><p>{val.description}</p><p>Duration:{val.duration}</p></center>
+                <div className="course-image-wrapper" key={val.id}>
+                  <Link to={"/enrollcourse"}>
+                    <img src={val.imgurl} alt="" />
+                  </Link>
+                  <div className="course-details">
+                    <h3 className="course-name">{val.coursename}</h3>
+                    <p className="course-description">{val.description}</p>
+                    <p className="course-duration">Duration:{val.duration}</p>
+                  </div>
                 </div>
               );
             })
           ) : (
             <p>No courses found.</p>
           )}
-        </div>
+        </Slider>
       </div>
     </>
   );
