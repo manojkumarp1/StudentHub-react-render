@@ -4,6 +4,14 @@ import {  NavLink } from 'react-router-dom'
 
 function Navbar() {
 
+  const loginStatus = {
+    isLogIn : false,
+    type : 'User',
+    name : 'Avani Puttaparthi',
+    imgSrc : 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250'
+
+  }
+
   const navigationData =[
     {
       navName:'Home',
@@ -35,15 +43,26 @@ function Navbar() {
     }
   ]
 
+
   
   return (
     <div className='nav-main'>
       <div className='nav-wrapper'>
         <div className='nav-profile'>
             <div className='profile-img'>
-              <img className='image' src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250" alt="profilepic"/>
-            </div> 
-            <div className='user-name'>Student</div>
+              {
+                loginStatus.isLogIn ? <img className='image' src={loginStatus.imgSrc} alt="profilepic"/>
+                :
+                <img className='image' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" />
+              }
+              
+            </div>
+            {
+              loginStatus.isLogIn ? 
+              <div className='user-name'>{loginStatus.name} ({loginStatus.type})</div>
+              :
+              <div className='user-name'>Login</div>            
+            } 
         </div>
         {
           navigationData.map((data,index) => (
@@ -55,9 +74,10 @@ function Navbar() {
           ))
         }
       </div>
-      <div className='nav-logout'>
-        Login as Admin
-      </div>
+      {
+        loginStatus.isLogIn && <div className='nav-logout'> Logout </div>
+      }
+      
     </div>
   )
 }
