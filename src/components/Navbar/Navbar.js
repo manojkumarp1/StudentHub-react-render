@@ -22,8 +22,8 @@ function Navbar() {
       navRoute:'/tools'
     },
     {
-      navName:'Calender',
-      navRoute:'/calender'
+      navName:'Calendar',
+      navRoute:'/calendar'
     },
     {
       navName:'Progress Tracker',
