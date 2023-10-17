@@ -58,7 +58,7 @@ function Home() {
                     <img src="https://www.reactive-executive.com/wp-content/uploads/2023/02/quel-est-le-role-du-manager-management-et-sa-hierarchie-Reactive-Executive.webp" alt="course" />
                 </div>
             </Slider>
-            
+            <br></br>
             <h2>Learnings</h2>
             <Slider {...settings}>
                 {filteredItems.map(item => (
