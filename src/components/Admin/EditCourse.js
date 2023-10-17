@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
-
-
+import "./EditCourse.css";
 function EditCourse() {
   const [formValues, setFormValues] = useState({
     id: '',
@@ -74,12 +72,15 @@ function EditCourse() {
 
         <div></div>
       </div>
-        
+      <center>
+        <h2>Edit Course</h2>
+        </center>
       <div className="d-flex justify-content-center align-items-center vh-100 addpage">
         <div className="p-1 rounded w-25 border addform">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <input
+              <p>Enter Course Name :</p><br></br>
+              <input 
                 type="text"
                 value={formValues.coursename}
                 className="form-control"
@@ -90,8 +91,9 @@ function EditCourse() {
                 onChange={handleInput}
               />
             </div>
-
+          
             <div className="mb-3">
+            <p>Image Url: </p><br></br>
               <input
                 type="text"
                 value={formValues.imgurl}
@@ -104,12 +106,8 @@ function EditCourse() {
               />
             </div>
 
-
-
-
-
-
 	     <div className="mb-3">
+       <p>Enter Description: </p><br></br>
               <input
                 type="text"
                 value={formValues.description}
@@ -122,9 +120,8 @@ function EditCourse() {
               />
             </div>
 
-
-
             <div className="mb-3">
+            <p>Enter Description: </p><br></br>
               <input
                 type="text"
                 value={formValues.duration}

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Added useNavigate import
 import axios from "axios";
-import "./AdminCourse.css";
+import "./Admincourse.css";
 import settings, { carousel } from "../common-components/slick";
 import Slider from "react-slick";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
-function AdminCourse() {
+function Admincourse() {
+  const navigate = useNavigate();  // Hook to navigate to another route
+  
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -50,18 +52,14 @@ function AdminCourse() {
         alert('Error: Unable to delete course');
       });
   };
-  
-
 
   return (
     <>
       <div className="body">
-        <div>
-          <br />
-        </div>
-
+        <div><br /></div>
         <div></div>
       </div>
+      
       <div className="templateContainer">
         <div className="searchInput_Container">
           <input
@@ -69,9 +67,7 @@ function AdminCourse() {
             type="text"
             placeholder="Type here to search course"
             value={searchQuery}
-            onChange={(event) => {
-              setSearchQuery(event.target.value);
-            }}
+            onChange={(event) => setSearchQuery(event.target.value)}
           />
           <button
             className="btn btn-success w-10"
@@ -94,19 +90,14 @@ function AdminCourse() {
                     <h3 className="course-name">{val.coursename}</h3>
                     <p className="course-description">{val.description}</p>
                     <p className="course-duration">Duration:{val.duration}</p>
-                    <Link to={`/editcourse/`+val.id}>
-                    <FaEdit />
-                  </Link>
-                  <Link onClick={e => handleDelete(val.id)} id="deleteCourse" className="deleteButton" type="button">
-                    <FaTrash />
-                  </Link>
-
-                    
-                    
-
-
-
-
+                    <div className="icon-wrapper">
+                      <Link to={`/editcourse/` + val.id}>
+                        <FaEdit />
+                      </Link>
+                      <Link onClick={e => handleDelete(val.id)} id="deleteCourse" className="deleteButton">
+                        <FaTrash />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               );
@@ -115,9 +106,11 @@ function AdminCourse() {
             <p>No courses found.</p>
           )}
         </Slider>
+        <br></br>
+        <button className="add-course-button" onClick={() => navigate('/addcourse')}>Add Course</button> {/* "Add Course" button */}
       </div>
     </>
   );
 }
 
-export default AdminCourse;
+export default Admincourse;

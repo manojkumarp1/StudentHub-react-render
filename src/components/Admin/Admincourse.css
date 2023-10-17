@@ -81,6 +81,8 @@
     justify-content: space-around;
     align-items: center;
     padding: 10px;
+    position: relative; 
+
 }
 .course-name{
     font-size: 17px;
@@ -91,4 +93,28 @@
     font-size: 14px;
     font-weight: 400;
     text-align: center;
+}
+.icon-wrapper {
+    position: absolute;
+    bottom: 10px; 
+    right: 10px;  
+    display: flex;
+    gap: 10px;
+  }
+  .add-course-button {
+    background-color: #12a89d; /* You can adjust this color as per your theme */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    margin-left: 85%;
+    margin-right: auto;
+}
+
+.add-course-button:hover {
+    background-color: #0f8a75; /* A slightly darker shade for hover */
 }
