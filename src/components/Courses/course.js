@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./course.css";
+//eslint-disable-next-line
 import settings, { carousel } from "../common-components/slick";
 import Slider from "react-slick";
 
