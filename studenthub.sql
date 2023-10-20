@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2023 at 01:47 PM
+-- Generation Time: Oct 20, 2023 at 07:22 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,35 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `courses`
+-- Table structure for table `students`
 --
 
-CREATE TABLE `courses` (
-  `id` int(40) NOT NULL,
-  `coursename` varchar(50) NOT NULL,
-  `imgurl` varchar(1000) NOT NULL,
-  `description` varchar(300) NOT NULL,
-  `duration` varchar(50) NOT NULL
+CREATE TABLE `students` (
+  `id` int(20) NOT NULL,
+  `firstname` varchar(30) NOT NULL,
+  `lastname` varchar(30) NOT NULL,
+  `dob` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `confirmpassword` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `courses`
---
-
-INSERT INTO `courses` (`id`, `coursename`, `imgurl`, `description`, `duration`) VALUES
-(1, 'Java Programming Language', 'https://codersera.com/blog/wp-content/uploads/2019/06/java_logo_640-768x512.jpg', 'Dive into the world of robust and scalable applications', '10 hours'),
-(5, 'Python Programming Language', 'https://images.ctfassets.net/mrop88jh71hl/55rrbZfwMaURHZKAUc5oOW/9e5fe805eb03135b82e962e92169ce6d/python-programming-language.png?w=1920&h=1920&q=100&fm=webp', 'Unravel the simplicity and power of dynamic programming', '8 hours'),
-(6, 'Dotnet', 'https://www.srishticampus.com/packageImages/dotnet_round.png', 'Harness the strength of a unified platform', '12 hours'),
-(7, 'Javascript', 'https://miro.medium.com/v2/resize:fit:828/format:webp/1*98ydKJQSWDGwHZxUV_-kLw.png', 'Ignite your web creations ', '10 hours');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `courses`
+-- Indexes for table `students`
 --
-ALTER TABLE `courses`
+ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -60,10 +53,10 @@ ALTER TABLE `courses`
 --
 
 --
--- AUTO_INCREMENT for table `courses`
+-- AUTO_INCREMENT for table `students`
 --
-ALTER TABLE `courses`
-  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `students`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
