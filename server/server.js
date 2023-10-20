@@ -143,3 +143,20 @@ app.post('/login', (req, res) => {
   });
 });
 
+
+app.post('/adminlogin', (req, res) => {
+  const { email, password } = req.body;
+  const query = 'SELECT * FROM admin WHERE email = ? AND password = ?';
+
+  con.query(query, [email, password], (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ Status: 'Error', Message: 'Database error' });
+    } else if (results.length === 1) {
+      res.status(200).json({ Status: 'Success' });
+    } else {
+      res.status(401).json({ Status: 'Failure' });
+    }
+  });
+});
+
