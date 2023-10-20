@@ -50,17 +50,17 @@ function Signup(){
 
 
                         <div className='mb-3'>
-                            <input type="text" id="username" placeholder='Enter First Name' name='username'
+                            <input type="text" id="firstname" placeholder='Enter First Name' name='firstname'
                             onChange={handleInput} className='form-control rounded-0' autoComplete='off'/>
                             {errors.firstname && <span className='text-danger'>{errors.firstname}</span>}
                         </div>
                         <div className='mb-3'>
-                            <input type="text" id="username" placeholder='Enter Last Name' name='username'
+                            <input type="text" id="lastname" placeholder='Enter Last Name' name='lastname'
                             onChange={handleInput} className='form-control rounded-0' autoComplete='off'/>
                             {errors.lastname && <span className='text-danger'>{errors.lastname}</span>}
                         </div>
                         <div className='mb-3'>
-                            <input type="text" id="username" placeholder='Enter Date of Birth' name='username'
+                            <input type="text" id="dob" placeholder='Enter Date of Birth' name='dob'
                             onChange={handleInput} className='form-control rounded-0' autoComplete='off'/>
                             {errors.dob && <span className='text-danger'>{errors.dob}</span>}
                         </div>
@@ -70,7 +70,7 @@ function Signup(){
                             {errors.email && <span className='text-danger'>{errors.email}</span>}
                         </div>
                         <div className='mb-3'>
-                            <input type="text" id="mobileNumber" placeholder='Enter Mobile number' name='mobileNumber'
+                            <input type="text" id="phone" placeholder='Enter Mobile number' name='phone'
                             onChange={handleInput} className='form-control rounded-0' autoComplete='off'/>
                             {errors.phone && <span className='text-danger'>{errors.phone}</span>}
                         </div>

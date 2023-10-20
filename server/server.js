@@ -110,7 +110,7 @@ app.put('/updatecourse/:id', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-  const sql = "INSERT INTO login (`firstname`,`lastname`,`dob`,`email`,`phone`,`password`) VALUES (?)";
+  const sql = "INSERT INTO students (`firstname`,`lastname`,`dob`,`email`,`phone`,`password`) VALUES (?)";
   const values=[
       req.body.firstname,
       req.body.lastname,
