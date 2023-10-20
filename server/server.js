@@ -116,7 +116,7 @@ app.post('/signup', (req, res) => {
       req.body.lastname,
       req.body.dob,
       req.body.email,
-req.body.phone,
+      req.body.phone,
       req.body.password
   ]
   con.query(sql,[values],(err,data)=> {
@@ -126,3 +126,20 @@ req.body.phone,
       return res.json(data);
   })
 })
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  const query = 'SELECT * FROM students WHERE email = ? AND password = ?';
+
+  con.query(query, [email, password], (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ Status: 'Error', Message: 'Database error' });
+    } else if (results.length === 1) {
+      res.status(200).json({ Status: 'Success' });
+    } else {
+      res.status(401).json({ Status: 'Failure' });
+    }
+  });
+});
+
