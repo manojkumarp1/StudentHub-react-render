@@ -34,8 +34,7 @@ CREATE TABLE `students` (
   `dob` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `confirmpassword` varchar(20) NOT NULL
+  `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
