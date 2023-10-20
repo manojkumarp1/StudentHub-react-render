@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2023 at 09:54 AM
+-- Generation Time: Oct 20, 2023 at 07:44 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -89,7 +89,9 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `firstname`, `lastname`, `dob`, `email`, `phone`, `password`) VALUES
-(1, 'hi', 'hi', 'hi', 'hi@gmail.com', 'hi', 'hi@gmail.com');
+(1, 'hi', 'hi', 'hi', 'hi@gmail.com', 'hi', 'hi@gmail.com'),
+(2, 'PavanChintakayala', 'PavanChintakayala', 'PavanChintakayala', 'PavanChintakayala@gmail.com', '1234567890', 'PavanChintakayala@gm'),
+(3, 'admin123', 'admin123', 'admin123', 'admin123@gmail.com', '1234567890', 'Pavan@180602');
 
 --
 -- Indexes for dumped tables
@@ -133,7 +135,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

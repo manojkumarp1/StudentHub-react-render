@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Signup.css';
 
-function Signup() {
+function Asignup() {
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
@@ -76,9 +76,9 @@ function Signup() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(validateFormData()){
-            axios.post('http://localhost:8081/signup',formData)
+            axios.post('http://localhost:8081/adminsignup',formData)
             .then(res=>{
-                navigate("/login");
+                navigate("/adminlogin");
             })
             .catch(err=>console.log(err));
         
@@ -189,4 +189,4 @@ function Signup() {
     );
 }
 
-export default Signup;
+export default Asignup;

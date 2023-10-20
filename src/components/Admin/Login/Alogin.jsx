@@ -91,7 +91,7 @@ function Alogin() {
         </button>
         <button
           type="button"
-          onClick={() => navigate('/signup')}
+          onClick={() => navigate('/adminsignup')}
           className="btn btn-secondary"
           id="signup"
         >

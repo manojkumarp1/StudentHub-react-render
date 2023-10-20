@@ -109,6 +109,7 @@ app.put('/updatecourse/:id', (req, res) => {
     });
 });
 
+
 app.post('/signup', (req, res) => {
   const sql = "INSERT INTO students (`firstname`,`lastname`,`dob`,`email`,`phone`,`password`) VALUES (?)";
   const values=[
@@ -160,3 +161,20 @@ app.post('/adminlogin', (req, res) => {
   });
 });
 
+app.post('/adminsignup', (req, res) => {
+  const sql = "INSERT INTO admin (`firstname`,`lastname`,`dob`,`email`,`phone`,`password`) VALUES (?)";
+  const values=[
+      req.body.firstname,
+      req.body.lastname,
+      req.body.dob,
+      req.body.email,
+      req.body.phone,
+      req.body.password
+  ]
+  con.query(sql,[values],(err,data)=> {
+      if(err) {
+          return res.json("Error");
+      }
+      return res.json(data);
+  })
+})
