@@ -1,192 +1,110 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import './Signup.css';
+import SignupAuth from "../Auth/SignupAuth";
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import './Signup.css'
 
-function Signup() {
-    const [formData, setFormData] = useState({
+function Signup(){
+
+    const [values, setValues] = useState({
+        id: '',
         firstname: '',
-        lastname: '',
-        dob: '',
-        email: '',
-        phone: '',
-        password: '',
-        confirmPassword: '',
-    });
+        lastname:'',
+        dob:'',
+        email:'',
+        phone:'',
+	    password:'',
+	    confirmpassword:''
 
-    const navigate = useNavigate();
-    const [errors, setErrors] = useState({});
+    })
+    const navigate = useNavigate()
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+    const [errors, setError] = useState('')
 
-    const validateFormData = () => {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const passwordPattern = /^.{8,}$/;
-        const usernamePattern = /^[a-zA-Z0-9]{3,}$/; // alpha-numeric characters
-        const mobileNumberPattern = /^[0-9]{10}$/;
+    const handleInput = (event)=> {
+        setValues(prev => ({...prev,[event.target.name]: [event.target.value]}))
+    }
 
-        const newErrors = {};
-
-        if (!formData.email) {
-            newErrors.email = "Email should not be empty";
-        } else if (!emailPattern.test(formData.email)) {
-            newErrors.email = "Invalid email format";
-        }
-
-        if (!formData.password) {
-            newErrors.password = "Password should not be empty";
-        } else if (!passwordPattern.test(formData.password)) {
-            newErrors.password = "Password must be at least 8 characters long";
-        }
-
-        if (!formData.confirmPassword) {
-            newErrors.confirmPassword = "Confirm Password should not be empty";
-        } else if (formData.confirmPassword !== formData.password) {
-            newErrors.confirmPassword = "Confirm Password didn't match";
-        }
-
-        if (!formData.firstname) {
-            newErrors.firstname = "First Name should not be empty";
-        }
-
-        if (!formData.lastname) {
-            newErrors.lastname = "Last Name should not be empty";
-        }
-
-        if (!formData.dob) {
-            newErrors.dob = "Date of Birth should not be empty";
-        }
-
-        if (!formData.phone) {
-            newErrors.phone = "Phone Number should not be empty";
-        } else if (!mobileNumberPattern.test(formData.phone)) {
-            newErrors.phone = "Invalid Mobile Number format";
-        }
-
-        setErrors(newErrors);
-
-        return Object.keys(newErrors).length === 0;
-    };
-
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if(validateFormData()){
-            axios.post('http://localhost:8081/signup',formData)
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setError(SignupAuth(values));
+        if(errors.firstname === "" && errors.lastname === ""  && errors.dob === "" && errors.email === "" && errors.phone === "" && errors.password === ""){
+            axios.post('http://localhost:8081/signup',values)
             .then(res=>{
                 navigate("/login");
             })
             .catch(err=>console.log(err));
-        
+        }
     }
-};
-
-
- return (
-        <div className="signup-container">
-            <h2>Signup</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="firstname">First Name <span className="required">*</span></label>
-                    <input
-                        type="text"
-                        id="firstname"
-                        name="firstname"
-                        value={formData.firstname}
-                        onChange={handleInputChange}
-                        placeholder='Enter firstname'
-                        required
-                    />
-                    {errors.firstname && <p className="error">{errors.firstname}</p>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="lastname">Last Name</label>
-                    <input
-                        type="text"
-                        id="lastname"
-                        name="lastname"
-                        value={formData.lastname}
-                        onChange={handleInputChange}
-                        placeholder='Enter lastname'
-                    />
-                    {errors.lastname && <p className="error">{errors.lastname}</p>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="dob">Date of Birth <span className="required">*</span></label>
-                    <input
-                        type="text"
-                        id="dob"
-                        name="dob"
-                        value={formData.dob}
-                        onChange={handleInputChange}
-                        placeholder='Enter Date of Birth'
-                        required
-                    />
-                    {errors.dob && <p className="error">{errors.dob}</p>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email <span className="required">*</span></label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder='Enter email'
-                        required
-                    />
-                    {errors.email && <p className="error">{errors.email}</p>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="phone">Contact No <span className="required">*</span></label>
-                    <input
-                        type="text"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        placeholder='Enter phone number'
-                        required
-                    />
-                    {errors.phone && <p className="error">{errors.phone}</p>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password <span className="required">*</span></label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleInputChange}
-                        placeholder='Enter password'
-                        required
-                    />
-                    {errors.password && <p className="error">{errors.password}</p>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="confirmPassword">Confirm Password <span className="required">*</span></label>
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
-                        onChange={handleInputChange}
-                        placeholder='Confirm Password'
-                        required
-                    />
-                    {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-                </div>
-                <button type="submit" id="signup1" className="btn btn-primary">Signup</button>
-                <Link to='/login' type='button' id='loginButton' className="btn btn-primary">
-                    Login
-                </Link>
-            </form>
+    return(
+        <>
+        <div className='d-flex justify-content-center align-items-center p-4 w-100 signupHead'>
+        <strong>Register</strong>
         </div>
-    );
+        <br/>
+        <div className='d-flex justify-content-center align-items-center vh-90 SignupPage'>
+                <div className='p-1 rounded w-25 signupForm'>
+                    <form onSubmit={handleSubmit}>
+
+
+
+
+                        <div className='mb-3'>
+                            <input type="text" id="firstname" placeholder='Enter First Name' name='firstname'
+                            onChange={handleInput} className='form-control rounded-0' autoComplete='off'/>
+                            {errors.firstname && <span className='text-danger'>{errors.firstname}</span>}
+                        </div>
+                        <div className='mb-3'>
+                            <input type="text" id="lastname" placeholder='Enter Last Name' name='lastname'
+                            onChange={handleInput} className='form-control rounded-0' autoComplete='off'/>
+                            {errors.lastname && <span className='text-danger'>{errors.lastname}</span>}
+                        </div>
+                        <div className='mb-3'>
+                            <input type="text" id="dob" placeholder='Enter Date of Birth' name='dob'
+                            onChange={handleInput} className='form-control rounded-0' autoComplete='off'/>
+                            {errors.dob && <span className='text-danger'>{errors.dob}</span>}
+                        </div>
+                        <div className='mb-3'>
+                            <input type="email" id="email" placeholder='Enter email' name='email'
+                            onChange={handleInput} className='form-control rounded-0' autoComplete='off'/>
+                            {errors.email && <span className='text-danger'>{errors.email}</span>}
+                        </div>
+                        <div className='mb-3'>
+                            <input type="text" id="phone" placeholder='Enter Mobile number' name='phone'
+                            onChange={handleInput} className='form-control rounded-0' autoComplete='off'/>
+                            {errors.phone && <span className='text-danger'>{errors.phone}</span>}
+                        </div>
+                        <div className='mb-3'>
+                            <input type="password" id="password" placeholder='Password' name='password'
+                            onChange={handleInput} className='form-control rounded-0' />
+                            {errors.password && <span className='text-danger'>{errors.password}</span>}
+                        </div>
+                        <div className='mb-3'>
+                            <input type="password" id="confirmPassword" placeholder='Confirm Password' name='confirmPassword'
+                            onChange={handleInput} className='form-control rounded-0' />
+                            {errors.confirmpassword && <span className='text-danger'>{errors.confirmpassword}</span>}
+                        </div>
+
+
+
+
+                        <div>
+                            <div className='col'>
+                                <button type='submit' id="loginButton" className='btn btn-success w-100 rounded-0'> Submit</button>
+                            </div>
+                            <div className='d-flex justify-content-center'>
+                               <p>Already an user?</p>
+                            </div>
+                            <div className='d-flex justify-content-center'>
+                                <Link to='/login' type="button" id='signupLink' className="btn btn-primary rounded-0"> Login </Link>
+                            </div>
+                            <Outlet/>
+                        </div> 
+                    </form>
+                </div>
+        </div>
+    </>
+    )
 }
 
-export default Signup;
+export default Signup
