@@ -35,13 +35,16 @@ function Login() {
     } else {
       setErrors((prev) => ({ ...prev, password: '' }));
     }
-
     if (errors.email === '' && errors.password === '') {
       axios
         .post('http://localhost:8081/login', formData)
         .then((res) => {
           if (res.data.Status === 'Success') {
-            navigate('/');
+            if (formData.email === "admin@gmail.com" && formData.password === "admin") {
+              navigate('/admincourses');
+            } else {
+              navigate('/courses');
+            }
           } else {
             navigate('/signup');
             alert('Invalid Credentials. Please Register');
