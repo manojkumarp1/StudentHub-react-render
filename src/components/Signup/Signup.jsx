@@ -7,7 +7,6 @@ import './Signup.css'
 function Signup(){
 
     const [values, setValues] = useState({
-        id: '',
         firstname: '',
         lastname:'',
         dob:'',
