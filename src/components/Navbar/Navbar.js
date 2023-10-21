@@ -61,9 +61,7 @@ function Navbar() {
               loginStatus.isLogIn ? 
               <div className='user-name'>{loginStatus.name} ({loginStatus.type})</div>
               :
-              <div className='user-name'>
-    <a href="/login">Login</a>
-</div>
+<a href="/login" className='user-name-button'>Login</a>
             
             } 
         </div>
