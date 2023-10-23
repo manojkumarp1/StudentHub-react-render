@@ -9,6 +9,18 @@ function SampleNextArrow(props) {
       />
     );
   }
+
+  function NoArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "none" }}
+        onClick={onClick}
+      />
+    );
+  }
+
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -28,6 +40,8 @@ function SampleNextArrow(props) {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1500,
+    nextArrow:<NoArrow/>,
+    prevArrow:<NoArrow/>
   };
 
   const settings = {

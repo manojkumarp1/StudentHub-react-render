@@ -23,19 +23,19 @@ const localizer = dateFnsLocalizer({
 const events = [
 
     {
-        title:'Hi',
-        start: new Date(2023,20,10),
-        start: new Date(2023,20,10)       
+        title:'Webinar',
+        start: new Date(2023,9,15),
+        end: new Date(2023,9,16)       
     },
     {
-        title:'Bye',
-        start: new Date(2023,21,10),
-        start: new Date(2023,21,10)       
+        title:'Quiz',
+        start: new Date(2023,10,14),
+        end: new Date(2023,10,18)       
     },
     {
-        title:'hl',
-        start: new Date(2023,22,10),
-        start: new Date(2023,22,10)       
+        title:'DSA Class',
+        start: new Date(2023,10,15),
+        end: new Date(2023,10,15)      
     },
 
 ]
