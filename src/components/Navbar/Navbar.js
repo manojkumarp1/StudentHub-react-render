@@ -53,6 +53,7 @@ function Navbar() {
               {
                 loginStatus.isLogIn ? <img className='image' src={loginStatus.imgSrc} alt="profilepic"/>
                 :
+                                // eslint-disable-next-line
                 <img className='image' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" />
               }
               
@@ -61,7 +62,8 @@ function Navbar() {
               loginStatus.isLogIn ? 
               <div className='user-name'>{loginStatus.name} ({loginStatus.type})</div>
               :
-              <div className='user-name'>Login</div>            
+<a href="/login" className='user-name-button'>Login</a>
+            
             } 
         </div>
         {

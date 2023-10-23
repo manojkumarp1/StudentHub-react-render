@@ -36,6 +36,28 @@
     cursor: pointer;
     margin-bottom: 10px;
 }
+.user-name-button {
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: 5%;
+    margin-bottom: 10px;
+    background-color: white;
+    border: none;          /* Remove default button borders */
+    padding: 5px 15px;     /* Add some padding for a button-like appearance */
+    border-radius: 4px;    /* Optional: gives the button rounded corners */
+    transition: background-color 0.3s ease; /* Optional: smooth transition for hover effect */
+}
+
+.user-name-button:hover {
+    background-color: cyan;  /* Slight change on hover for feedback */
+}
+
+.user-name-button:focus {
+    outline: none; /* Removes default focus outline */
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Adds a shadow for focus feedback */
+}
+
 .nav-names{
     display: flex;
     color: white;

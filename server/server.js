@@ -18,7 +18,7 @@ const con = mysql.createConnection({
 })
 
 con.connect(function(err) {
-    if(err) { 
+    if(err) {   
         console.log("Error in Connection");
         console.log(err);
     } else {
@@ -108,3 +108,73 @@ app.put('/updatecourse/:id', (req, res) => {
         return res.status(200).json({status: 'Success', message: 'Course details added successfully.', data: data});
     });
 });
+
+
+app.post('/signup', (req, res) => {
+  const sql = "INSERT INTO students (`firstname`,`lastname`,`dob`,`email`,`phone`,`password`) VALUES (?)";
+  const values=[
+      req.body.firstname,
+      req.body.lastname,
+      req.body.dob,
+      req.body.email,
+      req.body.phone,
+      req.body.password
+  ]
+  con.query(sql,[values],(err,data)=> {
+      if(err) {
+          return res.json("Error");
+      }
+      return res.json(data);
+  })
+})
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  const query = 'SELECT * FROM students WHERE email = ? AND password = ?';
+
+  con.query(query, [email, password], (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ Status: 'Error', Message: 'Database error' });
+    } else if (results.length === 1) {
+      res.status(200).json({ Status: 'Success' });
+    } else {
+      res.status(401).json({ Status: 'Failure' });
+    }
+  });
+});
+
+
+app.post('/adminlogin', (req, res) => {
+  const { email, password } = req.body;
+  const query = 'SELECT * FROM admin WHERE email = ? AND password = ?';
+
+  con.query(query, [email, password], (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ Status: 'Error', Message: 'Database error' });
+    } else if (results.length === 1) {
+      res.status(200).json({ Status: 'Success' });
+    } else {
+      res.status(401).json({ Status: 'Failure' });
+    }
+  });
+});
+
+app.post('/adminsignup', (req, res) => {
+  const sql = "INSERT INTO admin (`firstname`,`lastname`,`dob`,`email`,`phone`,`password`) VALUES (?)";
+  const values=[
+      req.body.firstname,
+      req.body.lastname,
+      req.body.dob,
+      req.body.email,
+      req.body.phone,
+      req.body.password
+  ]
+  con.query(sql,[values],(err,data)=> {
+      if(err) {
+          return res.json("Error");
+      }
+      return res.json(data);
+  })
+})
