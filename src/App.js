@@ -9,6 +9,7 @@ import Admincourse from './components/Admin/Admincourse';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Addcourse from './components/Admin/Addcourse';
+import Calender from './components/Calender/Calender';
 function App() {
 
   return (
@@ -24,6 +25,8 @@ function App() {
             <Route path='/admincourses' element={<Admincourse/>}/>
             <Route path='/editcourse/:id' element={<EditCourse />}></Route>
             <Route path='/addcourse' element={<Addcourse/>}/>
+            <Route path='/calendar' element={<Calender/>}/>
+
           </Routes>
         </div>
 
