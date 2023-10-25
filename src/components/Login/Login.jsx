@@ -9,10 +9,6 @@ function Login() {
     password: ''
   });
   const navigate = useNavigate();
-  const [errors, setErrors] = useState({
-    email: '',
-    password: ''
-  });
 
   const handleInput = (event) => {
     setFormData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -20,32 +16,18 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    // Validation
-    if (formData.email === '') {
-      setErrors((prev) => ({ ...prev, email: 'Email should not be empty' }));
-    } else {
-      setErrors((prev) => ({ ...prev, email: '' }));
-    }
 
-    if (formData.password === '') {
-      setErrors((prev) => ({ ...prev, password: 'Password should not be empty' }));
-    } else if (formData.password.length < 2) {
-      setErrors((prev) => ({ ...prev, password: 'Password should be at least 2 characters long' }));
+    if (formData.email === 'admin@gmail.com' && formData.password === 'admin') {
+      navigate('/admincourses');
     } else {
-      setErrors((prev) => ({ ...prev, password: '' }));
-    }
-    if (errors.email === '' && errors.password === '') {
+      // Make an API request to the login endpoint without validation
       axios
         .post('http://localhost:8081/login', formData)
         .then((res) => {
           if (res.data.Status === 'Success') {
-            if (formData.email === "admin@gmail.com" && formData.password === "admin") {
-              navigate('/admincourses');
-            } else {
-              navigate('/courses');
-            }
+            navigate('/courses');
           } else {
+            // If the login was not successful, navigate to the signup page
             navigate('/signup');
             alert('Invalid Credentials. Please Register');
           }
@@ -68,10 +50,9 @@ function Login() {
             value={formData.email}
             placeholder="Enter email"
             onChange={handleInput}
-            required
+            required // Add required attribute
             className="form-control"
           />
-          {errors.email && <p className="error">{errors.email}</p>}
         </div>
         <div className="form-group">
           <label htmlFor="password">
@@ -83,10 +64,9 @@ function Login() {
             value={formData.password}
             placeholder="Enter Password"
             onChange={handleInput}
-            required
+            required // Add required attribute
             className="form-control"
           />
-          {errors.password && <p className="error">{errors.password}</p>}
         </div>
 
         <button type="submit" className="btn btn-primary" id="login">
@@ -95,9 +75,7 @@ function Login() {
         <button
           type="button"
           onClick={() => navigate('/signup')}
-          className="btn btn-secondary"
-          id="signup"
-        >
+          className="btn btn-secondary" id="signup">
           Sign Up
         </button>
       </form>

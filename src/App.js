@@ -30,7 +30,6 @@ function App() {
             <Route path='/addcourse' element={<Addcourse/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
-  
             <Route path='/calendar' element={<Calender/>}/>
 
           </Routes>
