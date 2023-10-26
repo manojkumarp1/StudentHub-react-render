@@ -13,7 +13,7 @@ import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Profile from './components/Profile/Profile';
 
-import Calender from './components/Calender/Calender';
+import Calender from './components/Calendar/Calendar';
 function App() {
   return (
     <Router>
