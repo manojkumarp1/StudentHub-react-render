@@ -148,8 +148,8 @@ app.post('/login', (req, res) => {
       console.error('Database query error:', err);
       res.status(500).json({ Status: 'Error', Message: 'Database error' });
     } else if (results.length === 1) {
-      const studentId = results[0].id; // Assuming there's a "landlord_id" field in the database
-      console.log('Logged in as a Student. Landlord ID:', studentId);
+      const studentId = results[0].id; 
+      console.log('Logged in as a Student. Student ID:', studentId);
       res.status(200).json({ Status: 'Success', studentId });
     } else {
       res.status(401).json({ Status: 'Failure' });
