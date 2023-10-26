@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2023 at 07:44 PM
+-- Generation Time: Oct 26, 2023 at 08:29 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -78,20 +78,24 @@ CREATE TABLE `students` (
   `id` int(20) NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
-  `dob` varchar(30) NOT NULL,
+  `dob` date DEFAULT NULL,
   `email` varchar(30) NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(20) NOT NULL,
+  `profilePic` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `firstname`, `lastname`, `dob`, `email`, `phone`, `password`) VALUES
-(1, 'hi', 'hi', 'hi', 'hi@gmail.com', 'hi', 'hi@gmail.com'),
-(2, 'PavanChintakayala', 'PavanChintakayala', 'PavanChintakayala', 'PavanChintakayala@gmail.com', '1234567890', 'PavanChintakayala@gm'),
-(3, 'admin123', 'admin123', 'admin123', 'admin123@gmail.com', '1234567890', 'Pavan@180602');
+INSERT INTO `students` (`id`, `firstname`, `lastname`, `dob`, `email`, `phone`, `password`, `profilePic`) VALUES
+(1, 'hi', 'hi', '0000-00-00', 'hi@gmail.com', 'hi', 'hi@gmail.com', NULL),
+(2, 'PavanChintakayala', 'PavanChintakayala', '0000-00-00', 'PavanChintakayala@gmail.com', '1234567890', 'PavanChintakayala@gm', NULL),
+(3, 'admin123', 'admin123', '0000-00-00', 'admin123@gmail.com', '1234567890', 'Pavan@180602', NULL),
+(4, 'ram', 'ram', '0000-00-00', 'ram@gmail.com', '9874561235', 'ram', NULL),
+(5, 'ashok', 'raj', '2023-10-06', 'raj@gmail.com', '9874563212', 'rajrajraj', '/uploads/apartment.jpg'),
+(6, 'admin', 'admin', '2023-10-06', 'admin@gmail.com', '9876543213', 'admin@gmail.com', NULL);
 
 --
 -- Indexes for dumped tables
@@ -135,7 +139,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
