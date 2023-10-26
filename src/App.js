@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Addcourse from './components/Admin/Addcourse';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
-
+import Profile from './components/Profile/Profile';
 
 import Calender from './components/Calender/Calender';
 function App() {
@@ -31,7 +31,7 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/calendar' element={<Calender/>}/>
-
+            <Route path='/profile' element={<Profile/>}/>
           </Routes>
         </div>
       </div>

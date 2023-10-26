@@ -3,6 +3,8 @@ import mysql from "mysql"
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import bodyParser from "body-parser";
+import multer from "multer";
+import path from 'path'; 
 
 const app = express();
 app.use(cors());
@@ -29,6 +31,15 @@ app.listen(8081, ()=> {
     console.log("Running");
 })
 
+// Configure Multer for profile picture uploads
+const storage = multer.diskStorage({
+  destination: 'uploads/',
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+app.use('/uploads', express.static('uploads'));
 
 
 app.get('/getcourses',(req,res)=>{
@@ -137,13 +148,64 @@ app.post('/login', (req, res) => {
       console.error('Database query error:', err);
       res.status(500).json({ Status: 'Error', Message: 'Database error' });
     } else if (results.length === 1) {
-      res.status(200).json({ Status: 'Success' });
+      const studentId = results[0].id; // Assuming there's a "landlord_id" field in the database
+      console.log('Logged in as a Student. Landlord ID:', studentId);
+      res.status(200).json({ Status: 'Success', studentId });
     } else {
       res.status(401).json({ Status: 'Failure' });
     }
   });
 });
 
+
+app.get('/students/:id', (req, res) => {
+  const studentId = req.params.id;
+  const query = 'SELECT * FROM students WHERE id = ?';
+  con.query(query, [studentId], (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ Status: 'Error', Message: 'Database error' });
+    } else if (results.length === 1) {
+      const studentData = results[0];
+      res.status(200).json({ Status: 'Success', data: studentData });
+    } else {
+      res.status(404).json({ Status: 'Not Found' });
+    }
+  });
+});
+
+app.put('/students/:id', (req, res) => {
+  const studentId = req.params.id;
+  const user = req.body;
+  const query = 'UPDATE students SET ? WHERE id = ?';
+
+  con.query(query, [user, studentId], (err, result) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ Status: 'Error', Message: 'Database error' });
+    } else {
+      res.json({ Status: 'Success' });
+    }
+  });
+});
+
+app.post('/uploadProfilePic', upload.single('profilePic'), (req, res) => {
+  if (req.file) {
+    const studentId = req.body.studentId; // Assuming you're passing student ID in the request
+    const profilePicPath = `/uploads/${req.file.filename}`;
+    const query = 'UPDATE students SET profilePic = ? WHERE id = ?';
+    con.query(query, [profilePicPath, studentId], (err, result) => {
+      if (err) {
+        console.error('Database query error:', err);
+        res.status(500).json({ Status: 'Error', Message: 'Database error' });
+      } else {
+        res.json({ Status: 'Success', profilePicURL: profilePicPath });
+      }
+    });
+  } else {
+    res.status(400).json({ Status: 'Bad Request' });
+  }
+});
 
 app.post('/adminlogin', (req, res) => {
   const { email, password } = req.body;

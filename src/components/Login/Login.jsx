@@ -9,6 +9,7 @@ function Login() {
     password: ''
   });
   const navigate = useNavigate();
+  const [studentId, setstudentId] = useState(null);
 
   const handleInput = (event) => {
     setFormData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -25,7 +26,12 @@ function Login() {
         .post('http://localhost:8081/login', formData)
         .then((res) => {
           if (res.data.Status === 'Success') {
+            const studentId = res.data.studentId;
+            localStorage.setItem('studentId', studentId); // Store userId in localStorage
+            setstudentId(studentId); // Store userId in component state
+            console.log('Student ID:', studentId); // Log userId for users
             navigate('/courses');
+            window.location.reload(); // Refresh the page
           } else {
             // If the login was not successful, navigate to the signup page
             navigate('/signup');
