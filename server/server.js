@@ -278,13 +278,14 @@ app.put('/updateproblem', (req, res) => {
 
 app.post('/addproblem', (req, res) => {
   // SQL query to insert new course details into the database
-  const sql = "INSERT INTO problems (`name`, `email`, `problem`, `stat`) VALUES (?)";
+  const sql = "INSERT INTO problems (`name`, `email`, `problem`, `solution`, `stat`) VALUES (?)";
   
   // Values extracted from the incoming request
   const values = [
       req.body.name,
       req.body.email,
       req.body.problem,
+      req.body.solution,
       req.body.stat
   ];
   
@@ -300,3 +301,39 @@ app.post('/addproblem', (req, res) => {
       return res.status(200).json({status: 'Success', message: 'problem added successfully.', data: data});
   });
 });
+
+
+
+app.put('/updatesolution/:id', (req, res) => {
+  const { id } = req.params;
+  const { solution } = req.body;
+
+  if (!id || !solution) {
+      return res.status(400).json({ success: false, message: 'ID and solution are required.' });
+  }
+
+  const sql = "UPDATE problems SET solution = ? WHERE id = ?";
+
+  con.query(sql, [solution, id], (err, results) => {
+      if (err) {
+          console.error('Database query error:', err);
+          return res.status(500).json({ success: false, message: 'Database error' });
+      }
+
+      if (results.affectedRows === 0) {
+          return res.status(404).json({ success: false, message: 'Application not found.' });
+      }
+
+      res.status(200).json({ success: true, message: 'Solution updated successfully.' });
+  });
+});
+
+
+app.delete('/deleteproblem/:id',(req,res)=>{
+  const id = req.params.id;
+  const sql='DELETE FROM problems WHERE id = ?';
+  con.query(sql, [id], (err, result) => {
+      if(err) return res.json({Error: "delete problem error in sql"});
+      return res.json({Status: "Success"})
+  })
+})

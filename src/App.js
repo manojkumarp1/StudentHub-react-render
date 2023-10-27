@@ -13,7 +13,10 @@ import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Profile from './components/Profile/Profile';
 import Calender from './components/Calendar/Calendar';
-
+import Problemform from './components/Communicationtools/Problemform';
+import Araiseproblem from './components/Communicationtools/Araiseproblem';
+import Raiseproblem from './components/Communicationtools/Raiseproblem';
+import SolutionForm from './components/Communicationtools/Solutionform';
 function App() {
   return (
     <Router>
@@ -33,6 +36,10 @@ function App() {
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/calendar' element={<Calender/>}/>
             <Route path='/profile' element={<Profile/>}/>
+            <Route path='/queryform' element={<Problemform />}/>
+            <Route path='/tools' element={<Raiseproblem />}/>
+            <Route path='/admintools' element={<Araiseproblem />}/>
+            <Route path='/solutionform/:id' element={<SolutionForm />}/>
           </Routes>
         </div>
       </div>

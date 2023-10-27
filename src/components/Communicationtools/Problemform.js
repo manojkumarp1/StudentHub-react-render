@@ -7,7 +7,8 @@ function Problemform() {
     name: '',
     email: '',
     problem: '',
-    stat: 'pending'
+    solution: 'Unsolved',
+    stat: 'unverified'
   });
 
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Problemform() {
       .post(`http://localhost:8081/addproblem`, formValues)
       .then(res => {
         if (res.data.status === 'Success') {
-          navigate('/raiseproblem');
+          navigate('/tools');
         } else {
           alert('Error: Unable to add course');
         }

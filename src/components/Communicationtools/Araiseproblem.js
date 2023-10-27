@@ -11,18 +11,14 @@ function Araiseproblem() {
     let buttonText;
     let buttonColor;
 
-    if (currentStatus === "yes") {
-      newStatus = "no";
-      buttonText = "Rejected";
-      buttonColor = "red";
-    } else if (currentStatus === "no") {
-      newStatus = "yes";
-      buttonText = "Solved";
-      buttonColor = "#39C64D";
-    } else {
-      newStatus = "yes";
-      buttonText = "Solved";
-      buttonColor = "green";
+    if (currentStatus === "verified") {
+      newStatus = "unverified";
+      buttonText = "UnVerified";
+      buttonColor = "grey";
+    }  else {
+      newStatus = "verified";
+      buttonText = "Verified";
+      buttonColor = "Blue";
     }
 
     // Update the status in the client-side state directly
@@ -91,6 +87,19 @@ function Araiseproblem() {
     setFilteredData(filteredResults);
   };
 
+  const handleDeleteRow = (id) => {
+    // Call the server to delete the row
+    axios
+    .delete(`http://localhost:8081/deleteproblem/${id}`)
+    .then(res => {
+      if (res.data.Status === 'Success') {
+        window.location.reload(true);
+      } else {
+        alert('Error');
+      }
+    })
+    .catch(err => console.log(err));
+};
   return (
     <>
       <div className="body">
@@ -126,10 +135,11 @@ function Araiseproblem() {
             <table className="gridTable">
               <thead>
                 <tr>
-                  <th>Id</th>
+                  <th>SNo</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Problem</th>
+                  <th>Solution</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -138,15 +148,12 @@ function Araiseproblem() {
                   const currentStatus = val.stat;
                   let buttonText, buttonColor;
 
-                  if (currentStatus === "pending") {
-                    buttonText = "Pending";
-                    buttonColor = "yellow";
-                  } else if (currentStatus === "no") {
-                    buttonText = "Rejected";
-                    buttonColor = "red";
+                  if (currentStatus === "unverified") {
+                    buttonText = "UnVerified";
+                    buttonColor = "grey";
                   } else {
-                    buttonText = "Solved";
-                    buttonColor = "#39C64D";
+                    buttonText = "Verified";
+                    buttonColor = "blue";
                   }
 
                   return (
@@ -155,6 +162,7 @@ function Araiseproblem() {
                       <td>{val.name}</td>
                       <td>{val.email}</td>
                       <td>{val.problem}</td>
+                      <td>{val.solution}</td>
                       <td>
                         <button
                           style={{ backgroundColor: buttonColor }}
@@ -162,6 +170,9 @@ function Araiseproblem() {
                         >
                           {buttonText}
                         </button>
+                      </td>
+                      <td>
+                        <button onClick={() => handleDeleteRow(val.id)}>Delete</button>
                       </td>
                     </tr>
                   );

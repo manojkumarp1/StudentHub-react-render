@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2023 at 10:27 AM
+-- Generation Time: Oct 27, 2023 at 07:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -79,18 +79,17 @@ CREATE TABLE `problems` (
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `problem` text DEFAULT NULL,
-  `stat` varchar(50) DEFAULT NULL
+  `solution` text DEFAULT NULL,
+  `stat` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `problems`
 --
 
-INSERT INTO `problems` (`id`, `name`, `email`, `problem`, `stat`) VALUES
-(1, 'pavan', 'pavan@gmail.com', 'i am facing courses not displayed', 'yes'),
-(2, 'pavan', 'pavan@gmail.com', 'i am facing courses not displayed', 'no'),
-(3, 'pavan', 'pavan@gmail.com', 'i am facing courses not displayed', 'yes'),
-(4, 'Ganesh', 'ganesh@gmail.com', 'i am facing quiz issues', 'pending');
+INSERT INTO `problems` (`id`, `name`, `email`, `problem`, `solution`, `stat`) VALUES
+(1, 'Pavan', 'pavan@gmail.com', 'i\'m facing course issue ', 'i have problem', 'unverified'),
+(2, 'Ganesh', 'Ganesh@gmail.com', 'i am facing quizz problem', 'refresh the page then start the quiz', 'verified');
 
 -- --------------------------------------------------------
 
@@ -169,7 +168,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `problems`
 --
 ALTER TABLE `problems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `students`

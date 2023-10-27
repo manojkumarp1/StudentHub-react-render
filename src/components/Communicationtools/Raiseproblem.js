@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function Raiseproblem() {
   const [originalData, setOriginalData] = useState([]);
   const [data, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:8081/getproblem").then((res) => {
       if (res.data.Status === "Success") {
-        console.log(res.data.Result);
         setOriginalData(res.data.Result);
+        setFilteredData(res.data.Result);
       } else {
         alert("Error");
       }
@@ -24,6 +26,11 @@ function Raiseproblem() {
       item.problem.toString().includes(searchQuery.toLowerCase())
     );
     setFilteredData(filteredResults);
+  };
+
+  // Function to navigate to the solution form and pass the row ID
+  const navigateToSolutionForm = (id) => {
+    navigate(`/solutionform/${id}`);
   };
 
   return (
@@ -50,64 +57,46 @@ function Raiseproblem() {
               <button className="btn btn-success" type="submit" onClick={handleSearch}>
                 Track
               </button>
-              <Link to="/raiseproblemform"> {/* Link to the "raiseproblemform" page */}
+              <Link to="/queryform">
                 <button className="btn btn-primary">Raise a Problem</button>
               </Link>
             </div>
           </div>
         </div>
         <br></br>
-        {data.length > 0 ? (
-          <center>
-            <table className="gridTable">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Problem</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((val) => {
-                  const currentStatus = val.stat.toLowerCase();
-                  let buttonColor;
-                  let buttonText;
-
-                  if (currentStatus === "pending") {
-                    buttonColor = "yellow";
-                    buttonText = "Pending";
-                  } else if (currentStatus === "yes") {
-                    buttonColor = "#39C64D";
-                    buttonText = "Solved";
-                  } else if (currentStatus === "no") {
-                    buttonColor = "red";
-                    buttonText = "Rejected";
-                  } else {
-                    // Handle other status values here
-                    buttonColor = "gray"; // Default color for unknown status
-                    buttonText = "Unknown"; // Default text for unknown status
-                  }
-
-                  return (
-                    <tr key={val.id}>
-                      <td>{val.id}</td>
-                      <td>{val.name}</td>
-                      <td>{val.email}</td>
-                      <td>{val.problem}</td>
-                      <td>
-                        <button style={{ backgroundColor: buttonColor }}>{buttonText}</button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </center>
-        ) : (
-          <p></p>
-        )}
+        <center>
+          <table className="gridTable">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Problem</th>
+                <th>Solution</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((val) => {
+                const currentStatus = val.stat.toLowerCase();
+                return (
+                  <tr key={val.id}>
+                    <td>{val.id}</td>
+                    <td>{val.name}</td>
+                    <td>{val.problem}</td>
+                    <td>{val.solution}</td>
+                    <td>
+                      {currentStatus === "verified" ? (
+                        <button>Verified</button>
+                      ) : (
+                        <button onClick={() => navigateToSolutionForm(val.id)}>UnVerified</button>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </center>
       </div>
     </>
   );
