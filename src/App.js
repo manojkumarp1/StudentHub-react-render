@@ -13,9 +13,7 @@ import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Profile from './components/Profile/Profile';
 import Calender from './components/Calendar/Calendar';
-import Raiseproblem from './components/Communicationtools/Raiseproblem';
-import Araiseproblem from './components/Communicationtools/Araiseproblem';
-import Problemform from './components/Communicationtools/Problemform';
+
 function App() {
   return (
     <Router>
