@@ -78,16 +78,17 @@ function Login() {
             className="form-control"
           />
         </div>
-
-        <button type="submit" className="btn btn-primary" id="login">
-          Login
-        </button>
-        <button
-          type="button"
-          onClick={() => navigate('/signup')}
-          className="btn btn-secondary" id="signup">
-          Sign Up
-        </button>
+        <div className='login-signup-btns'>
+          <button type="submit" className="btn btn-primary" id="login">
+            Login
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate('/signup')}
+            className="btn btn-secondary" id="signup">
+            Sign Up
+          </button>
+        </div>
       </form>
     </div>
   );

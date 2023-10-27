@@ -13,7 +13,9 @@ import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Profile from './components/Profile/Profile';
 import Calender from './components/Calendar/Calendar';
-import Enrollform from './components/Enroll/enroll';
+import Raiseproblem from './components/Communicationtools/Raiseproblem';
+import Araiseproblem from './components/Communicationtools/Araiseproblem';
+import Problemform from './components/Communicationtools/Problemform';
 function App() {
   return (
     <Router>
@@ -33,8 +35,6 @@ function App() {
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/calendar' element={<Calender/>}/>
             <Route path='/profile' element={<Profile/>}/>
-            <Route path='/enroll' element={<Profile/>}/>
-            <Route path='/enrollcourse/:id' element={<Enrollform/>}/>
           </Routes>
         </div>
       </div>

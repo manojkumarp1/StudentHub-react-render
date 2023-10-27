@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2023 at 08:29 AM
+-- Generation Time: Oct 27, 2023 at 10:27 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -71,6 +71,30 @@ INSERT INTO `courses` (`id`, `coursename`, `imgurl`, `description`, `duration`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `problems`
+--
+
+CREATE TABLE `problems` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `problem` text DEFAULT NULL,
+  `stat` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `problems`
+--
+
+INSERT INTO `problems` (`id`, `name`, `email`, `problem`, `stat`) VALUES
+(1, 'pavan', 'pavan@gmail.com', 'i am facing courses not displayed', 'yes'),
+(2, 'pavan', 'pavan@gmail.com', 'i am facing courses not displayed', 'no'),
+(3, 'pavan', 'pavan@gmail.com', 'i am facing courses not displayed', 'yes'),
+(4, 'Ganesh', 'ganesh@gmail.com', 'i am facing quiz issues', 'pending');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `students`
 --
 
@@ -114,6 +138,12 @@ ALTER TABLE `courses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `problems`
+--
+ALTER TABLE `problems`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
@@ -134,6 +164,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `courses`
   MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `problems`
+--
+ALTER TABLE `problems`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `students`
