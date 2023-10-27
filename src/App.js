@@ -12,8 +12,8 @@ import Addcourse from './components/Admin/Addcourse';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Profile from './components/Profile/Profile';
-
 import Calender from './components/Calendar/Calendar';
+import Enrollform from './components/Enroll/enroll';
 function App() {
   return (
     <Router>
@@ -25,6 +25,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/courses' element={<Course/>}/>
+            <Route path='/courses/:id' element={<Course/>}/>
             <Route path='/admincourses' element={<Admincourse/>}/>
             <Route path='/editcourse/:id' element={<EditCourse />}></Route>
             <Route path='/addcourse' element={<Addcourse/>}/>
@@ -32,6 +33,8 @@ function App() {
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/calendar' element={<Calender/>}/>
             <Route path='/profile' element={<Profile/>}/>
+            <Route path='/enroll' element={<Profile/>}/>
+            <Route path='/enrollcourse/:id' element={<Enrollform/>}/>
           </Routes>
         </div>
       </div>

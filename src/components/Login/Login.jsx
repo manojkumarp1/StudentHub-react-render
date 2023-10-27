@@ -20,8 +20,12 @@ function Login() {
     event.preventDefault();
 
     if (formData.email === 'admin@gmail.com' && formData.password === 'admin') {
+      localStorage.setItem('authenticatedUser', false);
+      localStorage.setItem('authenticatedAdmin', true);
       navigate('/admincourses');
     } else {
+      localStorage.setItem('authenticatedUser', true);
+      localStorage.setItem('authenticatedAdmin', false);
       // Make an API request to the login endpoint without validation
       axios
         .post('http://localhost:8081/login', formData)
@@ -29,8 +33,7 @@ function Login() {
           if (res.data.Status === 'Success') {
             const studentId = res.data.studentId;
             localStorage.setItem('studentId', studentId); // Store userId in localStorage
-            setstudentId(studentId); // Store userId in component state
-            console.log('Student ID:', studentId); // Log userId for users
+            setstudentId(studentId); 
             navigate('/courses');
             window.location.reload(); // Refresh the page
           } else {

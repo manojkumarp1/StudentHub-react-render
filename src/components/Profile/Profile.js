@@ -155,12 +155,7 @@ function Profile() {
         </div>
         <button onClick={handleSubmit}>Update Profile</button>
       </form>
-      <div>
-        <img
-            src={userData.profilePic ? `http://localhost:8081${userData.profilePic}` : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}
-            alt="profilepic"
-        />
-        </div>
+
     </div>
   );
 }

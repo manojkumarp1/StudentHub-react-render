@@ -60,6 +60,8 @@ function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem('studentId'); // Clear studentId from local storage
     navigate('/login'); // Navigate to the login page
+    localStorage.removeItem('authenticatedUser');
+      localStorage.removeItem('authenticatedAdmin');
     window.location.reload(); // Refresh the page
   };
 
@@ -95,11 +97,10 @@ function Navbar() {
             {data.navName}
           </NavLink>
         ))}
-        {userData.id && (
           <div className="nav-logout" onClick={handleLogout}>
             Logout
           </div>
-        )}
+        
       </div>
     </div>
   );

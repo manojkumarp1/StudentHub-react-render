@@ -240,3 +240,25 @@ app.post('/adminsignup', (req, res) => {
       return res.json(data);
   })
 })
+app.get('/getcourse/:id', (req, res) => {
+  const id = req.params.id;
+  const sql = "SELECT * FROM courses where id = ?";
+  con.query(sql, [id], (err, result) => {
+      if(err) return res.json({Error: "Get academy error in sql"});
+      return res.json({Status: "Success", Result: result})
+  })
+})
+app.post('/enrollcourse', (req, res) => {
+  const sql = "INSERT INTO enroll (`name`,`selectedcourse`,`duration`) VALUES (?)";
+  const values=[
+      req.body.name,
+      req.body.selectedcourse,
+      req.body.duration,
+  ]
+  con.query(sql,[values],(err,data)=> {
+      if(err) {
+          return res.json("Error");
+      }
+      return res.json(data);
+  })
+})

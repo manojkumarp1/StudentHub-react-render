@@ -5,12 +5,10 @@ import "./course.css";
 //eslint-disable-next-line
 import settings, { carousel } from "../common-components/slick";
 import Slider from "react-slick";
-
 function Course() {
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-
   useEffect(() => {
     axios
       .get("http://localhost:8081/getcourses")
@@ -24,8 +22,8 @@ function Course() {
         }
       })
       .catch((err) => console.log(err));
-  }, []);
-
+  }, [])
+  
   const handleSearch = (event) => {
     event.preventDefault();
     const filteredResults = originalData.filter((item) =>
@@ -75,6 +73,7 @@ function Course() {
                     <h3 className="course-name">{val.coursename}</h3>
                     <p className="course-description">{val.description}</p>
                     <p className="course-duration">Duration:{val.duration}</p>
+                    <Link to={`/enrollcourse/`+val.id} id="enrollCourse" className="btn btn-success"  style={{ textDecoration: 'none' }} type="button">Enroll</Link>
                   </div>
                 </div>
               );

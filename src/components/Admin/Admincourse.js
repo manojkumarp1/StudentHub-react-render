@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Added useNavigate import
 import axios from "axios";
 import "./Admincourse.css";
+// eslint-disable-next-line
 import settings, { carousel } from "../common-components/slick";
 import Slider from "react-slick";
 import { FaEdit, FaTrash } from 'react-icons/fa';
@@ -27,7 +28,12 @@ function Admincourse() {
       })
       .catch((err) => console.log(err));
   }, []);
-
+  useEffect(() => {
+		const isAuthenticated = localStorage.getItem('authenticatedAdmin');
+		if (isAuthenticated !== 'true') {
+		  navigate('/login');
+		}
+	  });
   const handleSearch = (event) => {
     event.preventDefault();
     const filteredResults = originalData.filter((item) =>
