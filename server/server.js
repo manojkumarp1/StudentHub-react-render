@@ -250,3 +250,53 @@ app.get('/getproblem',(req,res)=>{
 
   })
 })
+
+app.put('/updateproblem', (req, res) => {
+  const { id, stat } = req.body;
+
+  if (!id || !stat) {
+      return res.status(400).json({ success: false, message: 'ID and status are required.' });
+  }
+
+  const sql = "UPDATE problems SET stat = ? WHERE id = ?";
+
+  con.query(sql, [stat, id], (err, results) => {
+      if (err) {
+          console.error('Database query error:', err);
+          return res.status(500).json({ success: false, message: 'Database error' });
+      }
+
+      if (results.affectedRows === 0) {
+          return res.status(404).json({ success: false, message: 'Application not found.' });
+      }
+
+      res.status(200).json({ success: true, message: 'Status updated successfully.' });
+  });
+});
+
+
+
+app.post('/addproblem', (req, res) => {
+  // SQL query to insert new course details into the database
+  const sql = "INSERT INTO problems (`name`, `email`, `problem`, `stat`) VALUES (?)";
+  
+  // Values extracted from the incoming request
+  const values = [
+      req.body.name,
+      req.body.email,
+      req.body.problem,
+      req.body.stat
+  ];
+  
+  // Execute the query
+  con.query(sql, [values], (err, data) => {
+      // Error handling for the query
+      if(err) {
+          console.error("Error occurred during query execution:", err); // log the detailed error
+          return res.status(500).json({status: 'Error', message: 'Unable to add problem to the database.'});
+      }
+
+      // Return a success response if course details were inserted successfully
+      return res.status(200).json({status: 'Success', message: 'problem added successfully.', data: data});
+  });
+});

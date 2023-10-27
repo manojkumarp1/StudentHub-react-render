@@ -15,6 +15,8 @@ import Profile from './components/Profile/Profile';
 
 import Calender from './components/Calendar/Calendar';
 import Raiseproblem from './components/Communicationtools/Raiseproblem';
+import Araiseproblem from './components/Communicationtools/Araiseproblem';
+import Problemform from './components/Communicationtools/Problemform';
 function App() {
   return (
     <Router>
@@ -34,6 +36,8 @@ function App() {
             <Route path='/calendar' element={<Calender/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/raiseproblem' element={<Raiseproblem/>}/>
+            <Route path='/araiseproblem' element={<Araiseproblem />}/>
+            <Route path='/raiseproblemform' element={<Problemform />}/>
           </Routes>
         </div>
       </div>

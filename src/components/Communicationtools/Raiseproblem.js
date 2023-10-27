@@ -78,10 +78,10 @@ function Raiseproblem() {
                   if (currentStatus === "pending") {
                     buttonColor = "yellow";
                     buttonText = "Pending";
-                  } else if (currentStatus === "solved") {
-                    buttonColor = "green";
+                  } else if (currentStatus === "yes") {
+                    buttonColor = "#39C64D";
                     buttonText = "Solved";
-                  } else if (currentStatus === "rejected") {
+                  } else if (currentStatus === "no") {
                     buttonColor = "red";
                     buttonText = "Rejected";
                   } else {
