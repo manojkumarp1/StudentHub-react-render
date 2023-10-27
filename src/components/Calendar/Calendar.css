@@ -1,0 +1,38 @@
+.add-events-admin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.add-events-header{
+    font-size: 20px;
+    font-weight: 500;
+}
+.add-events-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+    margin: 20px 0px;
+}
+.add-event-dates{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.add-events-title{
+    outline: none;
+    width: 51% !important;
+}
+
+.add-event-button{
+    background-color: #12a89d;
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
