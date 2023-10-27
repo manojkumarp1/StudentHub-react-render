@@ -14,6 +14,7 @@ import Signup from './components/Signup/Signup';
 import Profile from './components/Profile/Profile';
 
 import Calender from './components/Calendar/Calendar';
+import Raiseproblem from './components/Communicationtools/Raiseproblem';
 function App() {
   return (
     <Router>
@@ -32,6 +33,7 @@ function App() {
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/calendar' element={<Calender/>}/>
             <Route path='/profile' element={<Profile/>}/>
+            <Route path='/raiseproblem' element={<Raiseproblem/>}/>
           </Routes>
         </div>
       </div>

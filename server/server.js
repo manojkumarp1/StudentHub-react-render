@@ -240,3 +240,13 @@ app.post('/adminsignup', (req, res) => {
       return res.json(data);
   })
 })
+
+
+app.get('/getproblem',(req,res)=>{
+  const sql="SELECT * FROM problems";
+  con.query(sql,(err,result)=>{
+      if(err) return res,json({Error:"Got an error in the sql"});
+      return res.json({Status:"Success",Result:result})
+
+  })
+})
