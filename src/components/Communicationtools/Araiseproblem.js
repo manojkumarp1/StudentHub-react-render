@@ -117,7 +117,7 @@ function Araiseproblem() {
                 id="searchStudent"
                 type="text"
                 className="form-control"
-                placeholder="Type here problem to search"
+                placeholder="Seach your queries here"
                 value={searchQuery}
                 onChange={(event) => {
                   setSearchQuery(event.target.value);

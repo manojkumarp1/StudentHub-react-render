@@ -42,7 +42,7 @@ function Problemform() {
         <div></div>
       </div>
       <center>
-        <h2>Raise a Problem</h2>
+        <h2>Submit Your Query Here</h2>
       </center>
       <div className="d-flex justify-content-center align-items-center vh-100 addpage">
         <div className="p-1 rounded w-25 border addform">
@@ -69,11 +69,11 @@ function Problemform() {
             </div>
             <div className="mb-3">
               <input
-              type="text"
+              type="textarea"
                 value={formValues.problem}
                 className="form-control"
                 name="problem"
-                placeholder="Enter your problem"
+                placeholder="Type your Query here "
                 onChange={handleInput}
               />
             </div>
@@ -81,7 +81,7 @@ function Problemform() {
               <button
                 type="submit"
                 className="btn btn-success">
-                Raise a problem
+                Submit Query
               </button>
             </div>
           </form>

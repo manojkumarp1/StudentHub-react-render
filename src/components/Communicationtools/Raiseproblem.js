@@ -48,17 +48,17 @@ function Raiseproblem() {
                 id="searchStudent"
                 type="text"
                 className="form-control"
-                placeholder="Type here problem to track your status"
+                placeholder="Seach your queries here"
                 value={searchQuery}
                 onChange={(event) => {
                   setSearchQuery(event.target.value);
                 }}
               />
               <button className="btn btn-success" type="submit" onClick={handleSearch}>
-                Track
+                Search Query
               </button>
               <Link to="/queryform">
-                <button className="btn btn-primary">Raise a Problem</button>
+                <button className="btn btn-primary">Ask a Query</button>
               </Link>
             </div>
           </div>
