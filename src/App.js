@@ -17,6 +17,7 @@ import Problemform from './components/Communicationtools/Problemform';
 import Araiseproblem from './components/Communicationtools/Araiseproblem';
 import Raiseproblem from './components/Communicationtools/Raiseproblem';
 import SolutionForm from './components/Communicationtools/Solutionform';
+import Enrollform from './components/Enroll/enroll';
 function App() {
   return (
     <Router>
@@ -29,6 +30,7 @@ function App() {
             <Route path='/' element={<Home/>}/>
             <Route path='/courses' element={<Course/>}/>
             <Route path='/courses/:id' element={<Course/>}/>
+            <Route path='/getcourse/:id' element={<Course/>}/>
             <Route path='/admincourses' element={<Admincourse/>}/>
             <Route path='/editcourse/:id' element={<EditCourse />}></Route>
             <Route path='/addcourse' element={<Addcourse/>}/>
@@ -40,6 +42,8 @@ function App() {
             <Route path='/tools' element={<Raiseproblem />}/>
             <Route path='/admintools' element={<Araiseproblem />}/>
             <Route path='/solutionform/:id' element={<SolutionForm />}/>
+            <Route path='/enrollcourse/:id' element={<Enrollform />}/>
+            
           </Routes>
         </div>
       </div>

@@ -81,7 +81,7 @@ app.put('/updatecourse/:id', (req, res) => {
   });
 
 
-  app.get('/getcourses/:id', (req, res) => {
+  app.get('/getcourse/:id', (req, res) => {
     const id = req.params.id;
     const sql = 'SELECT * FROM courses WHERE id = ?';
     con.query(sql, [id], (err, result) => {
@@ -335,5 +335,19 @@ app.delete('/deleteproblem/:id',(req,res)=>{
   con.query(sql, [id], (err, result) => {
       if(err) return res.json({Error: "delete problem error in sql"});
       return res.json({Status: "Success"})
+  })
+})
+app.post('/enrollcourse', (req, res) => {
+  const sql = "INSERT INTO enroll (`name`,`selectedcourse`,`duration`) VALUES (?)";
+  const values=[
+      req.body.name,
+      req.body.selectedcourse,
+      req.body.duration,
+  ]
+  con.query(sql,[values],(err,data)=> {
+      if(err) {
+          return res.json("Error");
+      }
+      return res.json(data);
   })
 })
