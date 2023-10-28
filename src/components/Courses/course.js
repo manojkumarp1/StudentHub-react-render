@@ -31,7 +31,7 @@ function Course() {
     );
     setFilteredData(filteredResults);
   };
-
+  const isAuthenticated = localStorage.getItem('authenticatedUser');
   return (
     <>
       <div className="body">
@@ -73,7 +73,7 @@ function Course() {
                     <h3 className="course-name">{val.coursename}</h3>
                     <p className="course-description">{val.description}</p>
                     <p className="course-duration">Duration:{val.duration}</p>
-                    <Link to={`/enrollcourse/`+val.id} id="enrollCourse" className="btn btn-success"  style={{ textDecoration: 'none' }} type="button">Enroll</Link>
+                    {isAuthenticated && <Link to={`/enrollcourse/`+val.id} id="enrollCourse" className="btn btn-success"  style={{ textDecoration: 'none' }} type="button">Enroll</Link>}
                   </div>
                 </div>
               );

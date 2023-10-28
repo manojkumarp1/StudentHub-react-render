@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import './Calendar.css'
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import format from 'date-fns/format'
@@ -42,7 +42,6 @@ const events = [
     },
 
 ]
-const isAuthenticated = localStorage.getItem('authenticatedAdmin');
 
 
 
@@ -54,7 +53,13 @@ function Calender() {
     start:"",
     end:""
   })
-
+  const [isAdmin,setIsAdmin]=useState(true);
+useEffect(() => {
+  const isAuthenticated = localStorage.getItem('authenticatedAdmin');
+  if (isAuthenticated !== 'true') {
+    setIsAdmin(false);
+  }
+  });
   const handleAddEvent = () =>{
 
     const formattedStart = newEvent.start instanceof Date ? newEvent.start : parse(newEvent.start, 'yyyy-MM-dd', new Date());
@@ -67,7 +72,7 @@ function Calender() {
   return (
     <div>
       
-      {isAuthenticated &&
+      {isAdmin &&
         <div className='add-events-admin'>
           <div className='add-events-header'>Add Event</div>
           <div className='add-events-inputs'>
