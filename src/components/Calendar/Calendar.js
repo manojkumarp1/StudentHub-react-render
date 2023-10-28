@@ -42,12 +42,12 @@ const events = [
     },
 
 ]
+const isAuthenticated = localStorage.getItem('authenticatedAdmin');
 
 
 
 function Calender() {
 
-  const [isAdmin, setIsAdmin] = useState(true)
   const [allEvents, setAllEvents] = useState(events)
   const [newEvent, setNewEvent] = useState({
     title:"",
@@ -67,7 +67,7 @@ function Calender() {
   return (
     <div>
       
-      {isAdmin &&
+      {isAuthenticated &&
         <div className='add-events-admin'>
           <div className='add-events-header'>Add Event</div>
           <div className='add-events-inputs'>
