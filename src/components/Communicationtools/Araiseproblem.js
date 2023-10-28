@@ -141,6 +141,7 @@ function Araiseproblem() {
                   <th>Problem</th>
                   <th>Solution</th>
                   <th>Status</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -149,11 +150,11 @@ function Araiseproblem() {
                   let buttonText, buttonColor;
 
                   if (currentStatus === "unverified") {
-                    buttonText = "UnVerified";
-                    buttonColor = "grey";
+                    buttonText = "Contribute";
+                    buttonColor = "lightgrey";
                   } else {
                     buttonText = "Verified";
-                    buttonColor = "blue";
+                    buttonColor = "lightgreen";
                   }
 
                   return (
@@ -172,7 +173,7 @@ function Araiseproblem() {
                         </button>
                       </td>
                       <td>
-                        <button onClick={() => handleDeleteRow(val.id)}>Delete</button>
+                        <button className="delete" onClick={() => handleDeleteRow(val.id)}>Delete</button>
                       </td>
                     </tr>
                   );

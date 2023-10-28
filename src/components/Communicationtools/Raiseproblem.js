@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-
+import './communication.css';
 function Raiseproblem() {
   const [originalData, setOriginalData] = useState([]);
   const [data, setFilteredData] = useState([]);
@@ -65,6 +65,7 @@ function Raiseproblem() {
         </div>
         <br></br>
         <center>
+        <marquee behavior="scroll" direction="left">Click on contribute under status to submit your solution</marquee><br></br>
           <table className="gridTable">
             <thead>
               <tr>
@@ -86,9 +87,9 @@ function Raiseproblem() {
                     <td>{val.solution}</td>
                     <td>
                       {currentStatus === "verified" ? (
-                        <button>Verified</button>
+                        <button style={{ backgroundColor: 'lightgreen'}}>Verified</button>
                       ) : (
-                        <button onClick={() => navigateToSolutionForm(val.id)}>UnVerified</button>
+                        <button onClick={() => navigateToSolutionForm(val.id)}>Contribute</button>
                       )}
                     </td>
                   </tr>
