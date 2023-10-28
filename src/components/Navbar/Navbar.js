@@ -8,6 +8,8 @@ function Navbar() {
     firstname: '', // User first name
   });
 
+  const isAuthenticated = localStorage.getItem('authenticatedAdmin');
+
   const navigate = useNavigate(); // Access the navigation function
 
   const navigationData = [
@@ -15,9 +17,10 @@ function Navbar() {
       navName: 'Home',
       navRoute: '/',
     },
+  
     {
       navName: 'Courses',
-      navRoute: '/courses',
+      navRoute: isAuthenticated ? '/admincourses' : '/courses',
     },
     {
       navName: 'Academic Resources',
@@ -25,7 +28,7 @@ function Navbar() {
     },
     {
       navName: 'Communication Tools',
-      navRoute: '/tools',
+      navRoute: isAuthenticated ? '/admintools':'/tools',
     },
     {
       navName: 'Calendar',
