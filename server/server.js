@@ -337,6 +337,8 @@ app.delete('/deleteproblem/:id',(req,res)=>{
       return res.json({Status: "Success"})
   })
 })
+
+
 app.post('/enrollcourse', (req, res) => {
   const sql = "INSERT INTO enroll (`name`,`selectedcourse`,`duration`) VALUES (?)";
   const values=[
@@ -351,3 +353,35 @@ app.post('/enrollcourse', (req, res) => {
       return res.json(data);
   })
 })
+
+
+
+
+
+app.get('/events',(req,res)=>{
+  const sql="SELECT * FROM events";
+  con.query(sql,(err,result)=>{
+      if(err) return res,json({Error:"Got an error in the sql"});
+      return res.json({Status:"Success",Result:result})
+
+  })
+})
+
+
+
+
+app.post('/insertevents', (req, res) => {
+  const sql = "INSERT INTO events (`title`, `start`, `end`) VALUES (?)";
+  const values=[
+      req.body.title,
+      req.body.start,
+      req.body.end,
+  ]
+  con.query(sql,[values],(err,data)=> {
+      if(err) {
+          return res.json("Error");
+      }
+      return res.json(data);
+  })
+})
+
