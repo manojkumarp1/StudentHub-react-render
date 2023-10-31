@@ -25,6 +25,7 @@ const localizer = dateFnsLocalizer({
 });
 
 function CalendarApp() {
+  
   const [allEvents, setAllEvents] = useState([]);
   const [newEvent, setNewEvent] = useState({
     title: '',
@@ -66,6 +67,15 @@ function CalendarApp() {
 
   return (
     <div>
+      <Calendar
+        localizer={localizer}
+        events={allEvents}
+        startAccessor='start'
+        endAccessor='end'
+        style={{ height: 500 }}
+        views={['month', 'agenda']}
+        defaultView='month'
+      />
       <div className='add-events-admin'>
         <div className='add-events-header'>Add Event</div>
         <div className='add-events-inputs'>
@@ -92,16 +102,6 @@ function CalendarApp() {
           </button>
         </div>
       </div>
-
-      <Calendar
-        localizer={localizer}
-        events={allEvents}
-        startAccessor='start'
-        endAccessor='end'
-        style={{ height: 500 }}
-        views={['month', 'agenda']}
-        defaultView='month'
-      />
     </div>
   );
 }

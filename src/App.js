@@ -18,6 +18,7 @@ import Araiseproblem from './components/Communicationtools/Araiseproblem';
 import Raiseproblem from './components/Communicationtools/Raiseproblem';
 import SolutionForm from './components/Communicationtools/Solutionform';
 import Enrollform from './components/Enroll/enroll';
+import Quiz from './components/Quiz/Quiz';
 function App() {
   return (
     <Router>
@@ -43,6 +44,7 @@ function App() {
             <Route path='/admintools' element={<Araiseproblem />}/>
             <Route path='/solutionform/:id' element={<SolutionForm />}/>
             <Route path='/enrollcourse/:id' element={<Enrollform />}/>
+            <Route path='/quiz' element={<Quiz/>}/>
             
           </Routes>
         </div>
