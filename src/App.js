@@ -18,10 +18,11 @@ import Araiseproblem from './components/Communicationtools/Araiseproblem';
 import Raiseproblem from './components/Communicationtools/Raiseproblem';
 import SolutionForm from './components/Communicationtools/Solutionform';
 import Enrollform from './components/Enroll/enroll';
-import Quiz from './components/Home/Quiz/Quiz';
+import QuizHome from './components/Home/Quiz/Quiz';
 import Quizjava from './components/Home/Quiz/Quizjava';
 import Quizpython from './components/Home/Quiz/Quizpython';
 import Quizc from './components/Home/Quiz/Quizc';
+import Quiz from './components/Quiz/Quiz';
 function App() {
   return (
     <Router>
@@ -51,6 +52,8 @@ function App() {
             <Route path="/quizjava" element={<Quizjava />} />
             <Route path="/quizpython" element={<Quizpython />} />
             <Route path="/quizc" element={<Quizc />} />
+            <Route path='/quizhome' element={<QuizHome/>}/>
+            
           </Routes>
         </div>
       </div>

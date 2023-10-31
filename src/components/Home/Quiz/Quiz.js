@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Quiz.css";
 
-function Quiz() {
+function QuizHome() {
   const navigate = useNavigate();
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
   const [selectedTimer, setSelectedTimer] = useState(null);
@@ -110,4 +110,4 @@ function Quiz() {
   );
 }
 
-export default Quiz;
+export default QuizHome;
