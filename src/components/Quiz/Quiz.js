@@ -1,148 +1,69 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Quiz.css";
-import React, { useState } from "react";
 
+function QuizHome() {
+  const navigate = useNavigate();
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
 
-function Quiz() {
-  const [activeQuestion, setActiveQuestion] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
-  const [showResult, setShowResult] = useState(false);
-  const [result, setResult] = useState({
-    score: 0,
-    correctAnswers: 0,
-    wrongAnswers: 0,
-  });
+  const languages = [
+    { name: 'java', label: 'Java' },
+    { name: 'python', label: 'Python' },
+    { name: 'c', label: 'C' },
+    { name: 'javascript', label: 'Javascript' },
+  ];
 
- const quiz = {
-    topic: "Javascript",
-    level: "Beginner",
-    totalQuestions: 4,
-    perQuestionScore: 5,
-    questions: [
-      {
-        question:
-          "Which function is used to serialize an object into a JSON string in Javascript?",
-        choices: ["stringify()", "parse()", "convert()", "None of the above"],
-        type: "MCQs",
-        correctAnswer: "stringify()",
-      },
-      {
-        question:
-          "Which of the following keywords is used to define a variable in Javascript?",
-        choices: ["var", "let", "var and let", "None of the above"],
-        type: "MCQs",
-        correctAnswer: "var and let",
-      },
-      {
-        question:
-          "Which of the following methods can be used to display data in some form using Javascript?",
-        choices: [
-          "document.write()",
-          "console.log()",
-          "window.alert",
-          "All of the above",
-        ],
-        type: "MCQs",
-        correctAnswer: "All of the above",
-      },
-      {
-        question: "How can a datatype be declared to be a constant type?",
-        choices: ["const", "var", "let", "constant"],
-        type: "MCQs",
-        correctAnswer: "const",
-      },
-    ],
+  const handleStartLanguage = (language) => {
+    setSelectedLanguage(language);
   };
-  
 
-  const { questions } = quiz;
-  const { question, choices, correctAnswer } = questions[activeQuestion];
-
-  const onClickNext = () => {
-    // again reset the selectedAnwerIndex, so it won't effect next question
-    setSelectedAnswerIndex(null);
-    setResult((prev) =>
-      selectedAnswer
-        ? {
-            ...prev,
-            score: prev.score + 5,
-            correctAnswers: prev.correctAnswers + 1,
-          }
-        : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
-    );
-    if (activeQuestion !== questions.length - 1) {
-      setActiveQuestion((prev) => prev + 1);
-    } else {
-      setActiveQuestion(0);
-      setShowResult(true);
+  const startGame = () => {
+    if (selectedLanguage == "java") {
+      navigate(`/quizjava`);
+    
+    }
+    if (selectedLanguage == "python") {
+      navigate(`/quizpython`);
+    
+    }
+    if (selectedLanguage == "c") {
+      navigate(`/quizc`);
+    
+    } 
+    if (selectedLanguage == "javascript") {
+      navigate(`/quizjavascript`);
+    
+    }
+    else {
+      // Display an error message or prompt the user to make selections.
     }
   };
-
-  const onAnswerSelected = (answer, index) => {
-    setSelectedAnswerIndex(index);
-    if (answer === correctAnswer) {
-      setSelectedAnswer(true);
-    } else {
-      setSelectedAnswer(false);
-    }
-  };
-
-  const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
 
   return (
-    <div className="quiz-container">
-      {!showResult ? (
-        <div>
-          <div>
-            <span className="active-question-no">
-              {addLeadingZero(activeQuestion + 1)}
-            </span>
-            <span className="total-question">
-              /{addLeadingZero(questions.length)}
-            </span>
-          </div>
-          <h2>{question}</h2>
-          <ul>
-            {choices.map((answer, index) => (
-              <li
-                onClick={() => onAnswerSelected(answer, index)}
-                key={answer}
-                className={
-                  selectedAnswerIndex === index ? "selected-answer" : null
-                }
-              >
-                {answer}
-              </li>
-            ))}
-          </ul>
-          <div className="flex-right">
+    <div>
+      <div className="language-selection">
+        <strong>Select Language:</strong>
+        <div className="Language-buttons">
+          {languages.map((language) => (
             <button
-              onClick={onClickNext}
-              disabled={selectedAnswerIndex === null}
+              key={language.name}
+              className={`language-btn ${language.name === selectedLanguage ? 'selected' : ''}`}
+              onClick={() => handleStartLanguage(language.name)}
             >
-              {activeQuestion === questions.length - 1 ? "Finish" : "Next"}
+              {language.label}
             </button>
-          </div>
+          ))}
         </div>
-      ) : (
-        <div className="result">
-          <h3>Result</h3>
-          <p>
-            Total Question: <span>{questions.length}</span>
-          </p>
-          <p>
-            Total Score:<span> {result.score}</span>
-          </p>
-          <p>
-            Correct Answers:<span> {result.correctAnswers}</span>
-          </p>
-          <p>
-            Wrong Answers:<span> {result.wrongAnswers}</span>
-          </p>
-        </div>
+      </div>
+
+
+      {( selectedLanguage) && (
+        <button className="start-button" onClick={startGame}>
+          Start Game
+        </button>
       )}
     </div>
   );
 }
 
-export default Quiz;
+export default QuizHome;

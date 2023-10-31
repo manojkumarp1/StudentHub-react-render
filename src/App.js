@@ -18,11 +18,11 @@ import Araiseproblem from './components/Communicationtools/Araiseproblem';
 import Raiseproblem from './components/Communicationtools/Raiseproblem';
 import SolutionForm from './components/Communicationtools/Solutionform';
 import Enrollform from './components/Enroll/enroll';
-import QuizHome from './components/Home/Quiz/Quiz';
-import Quizjava from './components/Home/Quiz/Quizjava';
-import Quizpython from './components/Home/Quiz/Quizpython';
-import Quizc from './components/Home/Quiz/Quizc';
-import Quiz from './components/Quiz/Quiz';
+import QuizHome from './components/Quiz/Quiz';
+import Quizjava from './components/Quiz/Quizjava';
+import Quizpython from './components/Quiz/Quizpython';
+import Quizjavascript from './components/Quiz/Quizjavascript';
+import Quizc from './components/Quiz/Quizc';
 function App() {
   return (
     <Router>
@@ -48,11 +48,11 @@ function App() {
             <Route path='/admintools' element={<Araiseproblem />}/>
             <Route path='/solutionform/:id' element={<SolutionForm />}/>
             <Route path='/enrollcourse/:id' element={<Enrollform />}/>
-            <Route path='/quiz' element={<Quiz />}/>
+            <Route path='/quizjavascript' element={<Quizjavascript />}/>
             <Route path="/quizjava" element={<Quizjava />} />
             <Route path="/quizpython" element={<Quizpython />} />
             <Route path="/quizc" element={<Quizc />} />
-            <Route path='/quizhome' element={<QuizHome/>}/>
+            <Route path='/quiz' element={<QuizHome/>}/>
             
           </Routes>
         </div>
