@@ -1,0 +1,52 @@
+/* quiz.css */
+.language-selection {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .language-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .language-btn.selected {
+    background-color: #45a049;
+  }
+  
+  .difficulty-selection, .timer-selection {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .difficulty-btn, .timer-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .difficulty-btn.selected, .timer-btn.selected {
+    background-color: #2980b9;
+  }
+  
+  .start-button {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px;
+    cursor: pointer;
+  }
+  
+  .start-button:hover {
+    background-color: #e67e22;
+  }
+  
+  /* Add additional styles for your quiz container or background as needed */
+  

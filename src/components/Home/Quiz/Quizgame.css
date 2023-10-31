@@ -1,0 +1,113 @@
+/* Style the quiz game container */
+.quiz-game {
+    text-align: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  /* Style the title */
+  h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the quiz container */
+  .quiz-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style the questions */
+  .question {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the options list */
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Style each option */
+  li {
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Hover effect for options */
+  li:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Style the selected option */
+  .selected {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  
+  /* Style the feedback container */
+  .feedback {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  /* Style the game completion message */
+  .game-completed {
+    font-size: 20px;
+    color: #4CAF50;
+    margin: 20px 0;
+  }
+  
+  /* Style the game buttons container */
+  .game-buttons {
+    margin-top: 20px;
+  }
+  
+  /* Style the reset button */
+  .reset-button {
+    background-color: #f44336;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+  }
+  
+  /* Hover effect for reset button */
+  .reset-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Style the home button */
+  .home-button {
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Hover effect for home button */
+  .home-button:hover {
+    background-color: #388e3c;
+  }
+  
