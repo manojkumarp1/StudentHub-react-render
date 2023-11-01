@@ -3,6 +3,7 @@ import "./Home.css";
 import Slider from "react-slick";
 import '../common-components/slick';
 import settings, { carousel } from "../common-components/slick";
+import { NavLink } from "react-router-dom";
 
 function Home() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -10,15 +11,18 @@ function Home() {
     const items = [
         {
             src: "https://www.universitytimes.in/wp-content/uploads/2022/06/Assignment-696x464.jpg",
-            caption: "Assignments"
+            caption: "Assignments",
+            toroute:'/'
         },
         {
             src: "https://img.freepik.com/premium-vector/quiz-symbol-neon-illustration-night-isolated-design-elements_168425-181.jpg",
-            caption: "Quizzes"
+            caption: "Quizzes",
+            toroute:'/quiz'
         },
         {
             src: "https://uploads-ssl.webflow.com/60b8bc3a2747671228dc5a32/6177ca0a1c7d002ff87054c0_post%2016%20young%20people%20wellbeing%20workshop-p-1080.jpeg",
-            caption: "Workshops"
+            caption: "Workshops",
+            toroute:'/'
         }
     ];
 
@@ -62,10 +66,10 @@ function Home() {
             <h2>Learnings</h2>
             <Slider {...settings}>
                 {filteredItems.map(item => (
-                    <div className="home-image-wrapper" key={item.caption}>
+                    <NavLink to={item.toroute} className="home-image-wrapper" key={item.caption} >
                         <img src={item.src} alt={item.caption} />
                         <div className="caption">{item.caption}</div>
-                    </div>
+                    </NavLink>
                 ))}
             </Slider>
         </div>
