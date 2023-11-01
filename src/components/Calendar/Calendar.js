@@ -25,6 +25,13 @@ const localizer = dateFnsLocalizer({
 });
 
 function CalendarApp() {
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+		const isAuthenticated = localStorage.getItem('authenticatedAdmin');
+		if (isAuthenticated === 'true') {
+		  setIsAdmin(true);
+		}
+	  }, []);
   
   const [allEvents, setAllEvents] = useState([]);
   const [newEvent, setNewEvent] = useState({
@@ -76,7 +83,7 @@ function CalendarApp() {
         views={['month', 'agenda']}
         defaultView='month'
       />
-      <div className='add-events-admin'>
+      {isAdmin && <div className='add-events-admin'>
         <div className='add-events-header'>Add Event</div>
         <div className='add-events-inputs'>
           <div className='add-event-dates'>
@@ -101,7 +108,7 @@ function CalendarApp() {
             Add event
           </button>
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

@@ -25,6 +25,7 @@ import Quizjavascript from './components/Quiz/Quizjavascript';
 import Quizc from './components/Quiz/Quizc';
 import Progress from './components/Progresstracker/Progress';
 function App() {
+  
   return (
     <Router>
       <div className='app-main'>

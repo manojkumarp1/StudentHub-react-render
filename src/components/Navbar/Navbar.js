@@ -1,15 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import { NavLink, useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 function Navbar() {
+
+  const [formValues, setFormValues] = useState({
+    name: '',
+  });
+  // eslint-disable-next-line
   const [userData, setUserData] = useState({
-    id: '', // User ID
-    firstname: '', // User first name
+    id: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    dob: '',
+    phone: '',
+    password: '',
+    profilePic: '',
   });
 
+  useEffect(() => {
+    const studentId = localStorage.getItem('studentId');
+    if (studentId) {
+      axios
+        .get(`http://localhost:8081/students/${studentId}`)
+        .then((response) => {
+          if (response.data.Status === 'Success') {
+            setUserData(response.data.data);
+            setFormValues(prev => ({
+              ...prev,
+              name: `${response.data.data.firstname} ${response.data.data.lastname}`,
+            }));
+          } else {
+            console.error('Error fetching user data');
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching user data: ', error);
+        });
+    }
 
-
+  }, []);
   const navigate = useNavigate(); // Access the navigation function
 
   const navigationData = [
@@ -36,7 +67,7 @@ function Navbar() {
     },
     {
       navName: 'Progress Tracker',
-      navRoute: '/tracker',
+      navRoute: '/progress/'+formValues.name,
     },
     {
       navName: 'Report',

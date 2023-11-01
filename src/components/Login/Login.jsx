@@ -10,7 +10,7 @@ function Login() {
   });
   const navigate = useNavigate();
   // eslint-disable-next-line
-  const [studentId, setstudentId] = useState(null);
+  const [studentId, setstudentId] = useState(null);  
 
   const handleInput = (event) => {
     setFormData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -24,16 +24,17 @@ function Login() {
       localStorage.setItem('authenticatedAdmin', true);
       navigate('/admincourses');
     } else {
-      localStorage.setItem('authenticatedUser', true);
-      localStorage.setItem('authenticatedAdmin', false);
+
       // Make an API request to the login endpoint without validation
       axios.post('http://localhost:8081/login', formData)
         .then((res) => {
           if (res.data.Status === 'Success') {
+            localStorage.setItem('authenticatedUser', true);
+            localStorage.setItem('authenticatedAdmin', false);
             const studentId = res.data.studentId;
             localStorage.setItem('studentId', studentId); // Store userId in localStorage
             setstudentId(studentId); 
-            navigate('/courses');
+            navigate('/');
             window.location.reload(); // Refresh the page
           } else {
             navigate('/signup');

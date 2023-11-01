@@ -66,9 +66,7 @@ function Course() {
             filteredData.map((val) => {
               return (
                 <div className="course-image-wrapper" key={val.id}>
-                  <Link to={"/enrollcourse"}>
                     <img src={val.imgurl} alt="" />
-                  </Link>
                   <div className="course-details">
                     <h3 className="course-name">{val.coursename}</h3>
                     <p className="course-description">{val.description}</p>

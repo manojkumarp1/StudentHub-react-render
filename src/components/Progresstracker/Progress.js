@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import "./Progress.css";
 
 function Progress() {
     const { name } = useParams();
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8081/progress/`)
-            .then(res => {
+        axios
+            .get(`http://localhost:8081/progress/`)
+            .then((res) => {
                 if (res.data.Status === "Success") {
                     console.log(res.data.Result);
                     setData(res.data.Result);
@@ -16,26 +18,38 @@ function Progress() {
                     alert("Error");
                 }
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     }, [name]); // Include 'name' as a dependency to re-fetch data when 'name' changes
 
     const navigate = useNavigate();
 
     return (
         <>
-            <div className="templateContainer">
-                <div className="template_ContainerEnroll">
+            <div className="templateContainer2">
+                <div className="template_ContainerEnroll1">
+                    <center>
+                        <h1>Courses Enrolled</h1>
+                        <br></br>
+                    </center>
                     {data.length > 0 ? (
-                        data.map((val) => (
-                            <div className="template1" key={val.id} id="enrolledCourse">
-                                {name === val.name ? (
-                                    <div>
-                                    <h4>Course name: {val.selectedcourse}</h4>
-                                    <h4>Duration : {val.duration}</h4>
+                        data.map((val) => {
+                            if (name === val.name) {
+                                return (
+                                    <div className="template2" key={val.id} id="enrolledCourse">
+                                        <div>
+                                            <h4>Course name: {val.selectedcourse}</h4>
+                                            <h4>Duration : {val.duration}</h4>
+                                            <button
+                                                className="status"
+                                            >
+                                                Enrolled
+                                            </button>
+                                        </div>
                                     </div>
-                                ) : null}
-                            </div>
-                        ))
+                                );
+                            }
+                            return null; // Return null for non-matching entries
+                        })
                     ) : (
                         <p>No results found.</p>
                     )}

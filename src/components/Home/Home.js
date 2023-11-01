@@ -17,7 +17,7 @@ function Home() {
         {
             src: "https://img.freepik.com/premium-vector/quiz-symbol-neon-illustration-night-isolated-design-elements_168425-181.jpg",
             caption: "Quizzes",
-            toroute:'/quiz'
+            toroute:'/'
         },
         {
             src: "https://uploads-ssl.webflow.com/60b8bc3a2747671228dc5a32/6177ca0a1c7d002ff87054c0_post%2016%20young%20people%20wellbeing%20workshop-p-1080.jpeg",
