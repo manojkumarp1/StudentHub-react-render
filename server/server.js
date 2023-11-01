@@ -385,3 +385,12 @@ app.post('/insertevents', (req, res) => {
   })
 })
 
+
+app.get('/progress',(req,res)=>{
+  const sql="SELECT * FROM enroll";
+  con.query(sql,(err,result)=>{
+      if(err) return res,json({Error:"Got an error in the sql"});
+      return res.json({Status:"Success",Result:result})
+
+  })
+})

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 
 function Enrollform() {
   const [formValues, setFormValues] = useState({
@@ -80,7 +80,7 @@ function Enrollform() {
     axios
       .post('http://localhost:8081/enrollcourse', formValues)
       .then((res) => {
-        navigate('/courses');
+        navigate('/progress/'+formValues.name);
       })
       .catch((err) => console.log(err));
   };
@@ -138,7 +138,13 @@ function Enrollform() {
             </div>
             <div className="mb-3">
               <center>
-                <button type="submit" id="enrollNowButton" className="btn btn-success ">
+
+              <button
+                  onClick={handleSubmit}
+                  id="enrollCourse"
+                  className="btn btn-success"
+                  type="button"
+                >
                   Confirm Enrollment
                 </button>
               </center>
