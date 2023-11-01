@@ -18,19 +18,19 @@ function QuizHome() {
   };
 
   const startGame = () => {
-    if (selectedLanguage == "java") {
+    if (selectedLanguage === "java") {
       navigate(`/quizjava`);
     
     }
-    if (selectedLanguage == "python") {
+    if (selectedLanguage === "python") {
       navigate(`/quizpython`);
     
     }
-    if (selectedLanguage == "c") {
+    if (selectedLanguage === "c") {
       navigate(`/quizc`);
     
     } 
-    if (selectedLanguage == "javascript") {
+    if (selectedLanguage === "javascript") {
       navigate(`/quizjavascript`);
     
     }
