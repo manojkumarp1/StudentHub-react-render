@@ -18,7 +18,7 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    
     if (formData.email === 'admin@gmail.com' && formData.password === 'admin') {
       localStorage.setItem('authenticatedUser', false);
       localStorage.setItem('authenticatedAdmin', true);
@@ -27,8 +27,7 @@ function Login() {
       localStorage.setItem('authenticatedUser', true);
       localStorage.setItem('authenticatedAdmin', false);
       // Make an API request to the login endpoint without validation
-      axios
-        .post('http://localhost:8081/login', formData)
+      axios.post('http://localhost:8081/login', formData)
         .then((res) => {
           if (res.data.Status === 'Success') {
             const studentId = res.data.studentId;
@@ -37,12 +36,16 @@ function Login() {
             navigate('/courses');
             window.location.reload(); // Refresh the page
           } else {
-            // If the login was not successful, navigate to the signup page
             navigate('/signup');
-            alert('Invalid Credentials. Please Register');
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) =>{
+          if(err){
+            alert("Invalid Credentials. Please Register"); // Handle 401 status
+            navigate('/signup');
+            console.log(err)
+          }
+        })
     }
   };
 
