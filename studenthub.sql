@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2023 at 07:52 AM
+-- Generation Time: Nov 01, 2023 at 03:00 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -63,10 +63,10 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `coursename`, `imgurl`, `description`, `duration`) VALUES
-(5, 'Python Programming Language', 'https://www.svgrepo.com//show/376344/python.svg', 'Unravel the simplicity and power of dynamic programming', '10 hours'),
 (6, 'Dotnet', 'https://www.srishticampus.com/packageImages/dotnet_round.png', 'Harness the strength of a unified platform', '12 hours'),
 (7, 'Javascript', 'https://miro.medium.com/v2/resize:fit:828/format:webp/1*98ydKJQSWDGwHZxUV_-kLw.png', 'Ignite your web creations ', '10 hours'),
-(12, 'Javascript', 'https://miro.medium.com/v2/resize:fit:828/format:webp/1*98ydKJQSWDGwHZxUV_-kLw.png', 'Ignite your web creations ', '10 hours');
+(12, 'Javascript', 'https://miro.medium.com/v2/resize:fit:828/format:webp/1*98ydKJQSWDGwHZxUV_-kLw.png', 'Ignite your web creations ', '10 hours'),
+(14, 'Dotnet', 'https://www.srishticampus.com/packageImages/dotnet_round.png', 'Harness the strength of a unified platform', '12 hours');
 
 -- --------------------------------------------------------
 
@@ -87,8 +87,10 @@ CREATE TABLE `enroll` (
 
 INSERT INTO `enroll` (`id`, `name`, `selectedcourse`, `duration`) VALUES
 (1, 'ashok raj', 'Python Programming Language', '10 hours'),
-(2, 'pavan hi', 'Python Programming Language', '10 hours'),
-(3, 'ashok raj', 'Dotnet', '12 hours');
+(3, 'ashok raj', 'Dotnet Language', '12 hours'),
+(4, 'ashok raj', 'Python Programming Language', '10 hours'),
+(5, 'ashok raj', 'Dotnet', '12 hours'),
+(6, 'Ganesh raj', 'Dotnet', '12 hours');
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,7 @@ CREATE TABLE `problems` (
 --
 
 INSERT INTO `problems` (`id`, `name`, `email`, `problem`, `solution`, `stat`) VALUES
-(1, 'Pavan', 'pavan@gmail.com', 'i\'m facing course issue ', 'i have problem', 'unverified'),
+(1, 'Pavan', 'pavan@gmail.com', 'i\'m facing course issue ', 'problem here', 'unverified'),
 (2, 'Ganesh', 'Ganesh@gmail.com', 'i am facing quizz problem', 'refresh the page then start the quiz', 'verified');
 
 -- --------------------------------------------------------
@@ -218,13 +220,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `enroll`
 --
 ALTER TABLE `enroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `events`
