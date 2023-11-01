@@ -1,9 +1,9 @@
 .quiz-container {
     max-width: 500px;
-    background: #ede7e7;
+    background: rgb(214, 214, 214);
     border-radius: 4px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 150px;
     padding: 30px 60px;
   }
   
@@ -44,7 +44,7 @@
   }
   
   .quiz-container ul .selected-answer {
-    background: #7fbdb9;
+    background: cyan;
     border: 1px solid #12a89d;
   }
   

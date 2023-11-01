@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Quiz.css";
 
@@ -41,6 +41,7 @@ function QuizHome() {
 
   return (
     <div>
+      <h1 className='quizhead'>Assess Yourself Here !!!</h1>
       <div className="language-selection">
         <strong>Select Language:</strong>
         <div className="Language-buttons">
@@ -59,7 +60,7 @@ function QuizHome() {
 
       {( selectedLanguage) && (
         <button className="start-button" onClick={startGame}>
-          Start Game
+          Start Quiz
         </button>
       )}
     </div>

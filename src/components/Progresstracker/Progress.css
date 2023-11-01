@@ -28,6 +28,10 @@
     justify-content: left;
     color: #fff; /* Text color, if needed */
 }
+.status{
+background-color: rgb(10, 228, 10);
+margin-left:85%;
+}
 
   
   .template1:hover {
@@ -55,18 +59,5 @@
     color: #555;
   }
   
-  /* Add more specific styles for interactive elements like buttons or links */
-  .button {
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
   
-  .button:hover {
-    background-color: #2980b9;
-  }
   

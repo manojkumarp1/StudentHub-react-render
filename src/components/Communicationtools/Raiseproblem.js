@@ -9,6 +9,7 @@ function Raiseproblem() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
+
   useEffect(() => {
     axios.get("http://localhost:8081/getproblem").then((res) => {
       if (res.data.Status === "Success") {

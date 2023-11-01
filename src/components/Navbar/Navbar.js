@@ -2,12 +2,20 @@ import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 function Navbar() {
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('authenticatedAdmin');
+    if (isAuthenticated === 'true') {
+      setIsAdmin(true);
+    }
+  }, []);
 
   const [formValues, setFormValues] = useState({
     name: '',
   });
-  // eslint-disable-next-line
+
   const [userData, setUserData] = useState({
     id: '',
     firstname: '',
@@ -27,7 +35,7 @@ function Navbar() {
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);
-            setFormValues(prev => ({
+            setFormValues((prev) => ({
               ...prev,
               name: `${response.data.data.firstname} ${response.data.data.lastname}`,
             }));
@@ -39,8 +47,8 @@ function Navbar() {
           console.error('Error fetching user data: ', error);
         });
     }
-
   }, []);
+
   const navigate = useNavigate(); // Access the navigation function
 
   const navigationData = [
@@ -48,10 +56,9 @@ function Navbar() {
       navName: 'Home',
       navRoute: '/',
     },
-  
     {
       navName: 'Courses',
-      navRoute: '/courses',
+      navRoute: isAdmin ? '/admincourses' : `/courses`,
     },
     {
       navName: 'Academic Resources',
@@ -59,15 +66,15 @@ function Navbar() {
     },
     {
       navName: 'Communication Tools',
-      navRoute: '/tools',
+      navRoute: isAdmin ? '/admintools' : `/tools`,
     },
     {
       navName: 'Calendar',
       navRoute: '/calendar',
     },
     {
-      navName: 'Progress Tracker',
-      navRoute: '/progress/'+formValues.name,
+      navName: isAdmin ? '' : 'Progress Tracker',
+      navRoute: isAdmin ? '' : `/progress/${formValues.name}`,
     },
     {
       navName: 'Report',
@@ -95,7 +102,7 @@ function Navbar() {
     localStorage.removeItem('studentId'); // Clear studentId from local storage
     navigate('/login'); // Navigate to the login page
     localStorage.removeItem('authenticatedUser');
-      localStorage.removeItem('authenticatedAdmin');
+    localStorage.removeItem('authenticatedAdmin');
     window.location.reload(); // Refresh the page
   };
 
@@ -106,7 +113,7 @@ function Navbar() {
           <div className="profile-img">
             {userData.id ? (
               <NavLink to="/profile" className="nav-profile-link">
-                <img className="image"  src={`http://localhost:8081${userData.profilePic}`} alt="profilepic" />
+                <img className="image" src={`http://localhost:8081${userData.profilePic}`} alt="profilepic" />
               </NavLink>
             ) : (
               <img
@@ -122,19 +129,27 @@ function Navbar() {
             </div>
           ) : (
             <a href="/login" className="user-name-button">
-              Login
+              {isAdmin ? 'Admin' : 'Login'}
             </a>
           )}
         </div>
-        {navigationData.map((data, index) => (
-          <NavLink className="nav-names" key={index} to={data.navRoute}>
-            {data.navName}
-          </NavLink>
-        ))}
-          <div className="nav-logout" onClick={handleLogout}>
-            Logout
-          </div>
-        
+        <div className="nav-links">
+          {navigationData
+            .filter((item) => !!item.navName) // Filter out items with empty navName
+            .map((data, index) => (
+              <NavLink
+                className="nav-names"
+                key={index}
+                to={data.navRoute}
+                activeClassName="active"
+              >
+                {data.navName}
+              </NavLink>
+            ))}
+        </div>
+        <div className="nav-logout" onClick={handleLogout}>
+          Logout
+        </div>
       </div>
     </div>
   );

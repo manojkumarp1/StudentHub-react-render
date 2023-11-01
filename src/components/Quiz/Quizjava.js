@@ -27,7 +27,7 @@ function Quizjava() {
       {
         question:
           "Which statement is true about Java?",
-        choices: ["Java is a sequence-dependent programming language", "Java is a code dependent programming languaget", "Java is a platform-dependent programming language", "Java is a platform-independent programming language"],
+        choices: ["Java is a sequence-dependent programming language", "Java is a code dependent programming language", "Java is a platform-dependent programming language", "Java is a platform-independent programming language"],
         type: "MCQs",
         correctAnswer: "Java is a platform-independent programming language",
       },

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import "./Home.css";
 import Slider from "react-slick";
 import '../common-components/slick';
@@ -7,6 +7,13 @@ import { NavLink } from "react-router-dom";
 
 function Home() {
     const [searchTerm, setSearchTerm] = useState('');
+    const [isUser, setIsUser] = useState(false);
+    useEffect(() => {
+        const isAuthenticated = localStorage.getItem('authenticatedUser');
+        if (isAuthenticated === 'true') {
+          setIsUser(true);
+        }
+      }, []);
 
     const items = [
         {
@@ -17,8 +24,7 @@ function Home() {
         {
             src: "https://img.freepik.com/premium-vector/quiz-symbol-neon-illustration-night-isolated-design-elements_168425-181.jpg",
             caption: "Quizzes",
-            toroute:'/'
-        },
+            toroute: isUser ? '/quiz' : '/'        },
         {
             src: "https://uploads-ssl.webflow.com/60b8bc3a2747671228dc5a32/6177ca0a1c7d002ff87054c0_post%2016%20young%20people%20wellbeing%20workshop-p-1080.jpeg",
             caption: "Workshops",

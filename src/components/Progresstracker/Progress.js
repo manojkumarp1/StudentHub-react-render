@@ -39,12 +39,12 @@ function Progress() {
                                         <div>
                                             <h4>Course name: {val.selectedcourse}</h4>
                                             <h4>Duration : {val.duration}</h4>
+                                            </div>
                                             <button
                                                 className="status"
                                             >
                                                 Enrolled
                                             </button>
-                                        </div>
                                     </div>
                                 );
                             }

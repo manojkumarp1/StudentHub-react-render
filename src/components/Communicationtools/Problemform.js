@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Problemform() {
@@ -12,6 +12,12 @@ function Problemform() {
   });
 
   const navigate = useNavigate();
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('authenticatedUser');
+    if (isAuthenticated !== 'true') {
+      navigate('/login');
+    }
+  }, []);
 
   const handleInput = event => {
     const { name, value } = event.target;
