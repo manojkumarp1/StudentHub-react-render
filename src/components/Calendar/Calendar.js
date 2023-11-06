@@ -24,20 +24,35 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
+// Define the EventComponent here
+function EventComponent({ event }) {
+  return (
+    <div>
+      <strong>{event.title}</strong>
+      {event.link && <p>Link: {event.link}</p>}
+      {event.time && <p>Time: {event.time}</p>}
+      {event.endtime && <p>End Time: {event.endtime}</p>}
+    </div>
+  );
+}
+
 function CalendarApp() {
   const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
-		const isAuthenticated = localStorage.getItem('authenticatedAdmin');
-		if (isAuthenticated === 'true') {
-		  setIsAdmin(true);
-		}
-	  }, []);
-  
+    const isAuthenticated = localStorage.getItem('authenticatedAdmin');
+    if (isAuthenticated === 'true') {
+      setIsAdmin(true);
+    }
+  }, []);
+
   const [allEvents, setAllEvents] = useState([]);
   const [newEvent, setNewEvent] = useState({
     title: '',
-    start: '',
-    end: '',
+    start: new Date(), // Default start date
+    end: new Date(),   // Default end date
+    link: '',
+    time: '',
+    endtime: '',       // Default end time
   });
 
   useEffect(() => {
@@ -52,20 +67,30 @@ function CalendarApp() {
   }, []);
 
   const handleAddEvent = () => {
-    const formattedStart = newEvent.start instanceof Date ? newEvent.start : parse(newEvent.start, 'yyyy-MM-dd', new Date());
-    let formattedEnd = newEvent.end instanceof Date ? newEvent.end : parse(newEvent.end, 'yyyy-MM-dd', new Date());
-    formattedEnd = new Date(formattedEnd.getTime() + 24 * 60 * 60 * 1000);
+    // Ensure 'start' and 'end' are Date objects
+    const formattedStart = new Date(newEvent.start);
+    const formattedEnd = new Date(newEvent.end);
 
     // Send the new event to the server
     axios.post('http://localhost:8081/insertevents', {
       title: newEvent.title,
       start: formattedStart,
       end: formattedEnd,
+      link: newEvent.link,
+      time: newEvent.time,
+      endtime: newEvent.endtime,
     })
     .then(() => {
       const newEventArray = [...allEvents, { ...newEvent, start: formattedStart, end: formattedEnd }];
       setAllEvents(newEventArray);
-      setNewEvent({ title: '', start: '', end: '' });
+      setNewEvent({
+        title: '',
+        start: new Date(), // Reset start date
+        end: new Date(),   // Reset end date
+        link: '',
+        time: '',
+        endtime: '',       // Reset end time
+      });
     })
     .catch((error) => {
       console.error(error);
@@ -80,35 +105,70 @@ function CalendarApp() {
         startAccessor='start'
         endAccessor='end'
         style={{ height: 500 }}
-        views={['month', 'agenda']}
+        views={['month', 'agenda']} // Only 'month' and 'agenda' views
         defaultView='month'
+        components={{
+          event: EventComponent,
+        }}
       />
-      {isAdmin && <div className='add-events-admin'>
-        <div className='add-events-header'>Add Event</div>
-        <div className='add-events-inputs'>
-          <div className='add-event-dates'>
-            <div>Title :</div>
-            <input
-              className='add-events-title'
-              type='text'
-              placeholder='Add event title..'
-              value={newEvent.title}
-              onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-            />
+      {isAdmin && (
+        <div className='add-events-admin'>
+          <div className='add-events-header'>Add Event</div>
+          <div className='add-events-inputs'>
+            <div className='add-event-dates'>
+              <div>Title :</div>
+              <input
+                className='add-events-title'
+                type='text'
+                placeholder='Add event title..'
+                value={newEvent.title}
+                onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+              />
+            </div>
+            <div className='add-event-dates'>
+              <div>Link :</div>
+              <input
+                className='add-events-link'
+                type='text'
+                placeholder='Add event link..'
+                value={newEvent.link}
+                onChange={(e) => setNewEvent({ ...newEvent, link: e.target.value })}
+              />
+            </div>
+            <div className='add-event-dates'>
+              <div>Time :</div>
+              <input
+                className='add-events-time'
+                type='text'
+                placeholder='Add event time..'
+                value={newEvent.time}
+                onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
+              />
+            </div>
+            <div className='add-event-dates'>
+              <div>End Time :</div>
+              <input
+                className='add-events-end-time'
+                type='text'
+                placeholder='Add event end time..'
+                value={newEvent.endtime}
+                onChange={(e) => setNewEvent({ ...newEvent, endtime: e.target.value })}
+              />
+            </div>
+            <div className='add-event-dates'>
+              <div>Start date :</div>
+              <DatePicker selected={newEvent.start} onChange={(date) => setNewEvent({ ...newEvent, start: date })} />
+            </div>
+            <div className='add-event-dates'>
+              <div>End date :</div>
+              <DatePicker selected={newEvent.end} onChange={(date) => setNewEvent({ ...newEvent, end: date })} />
+            </div>
+            <button className='add-event-button' onClick={handleAddEvent}>
+              Add event
+            </button>
           </div>
-          <div className='add-event-dates'>
-            <div>Start date :</div>
-            <DatePicker value={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-          </div>
-          <div className='add-event-dates'>
-            <div>End date :</div>
-            <DatePicker value={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
-          </div>
-          <button className='add-event-button' onClick={handleAddEvent}>
-            Add event
-          </button>
         </div>
-      </div>}
+      )}
     </div>
   );
 }

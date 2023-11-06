@@ -371,11 +371,13 @@ app.get('/events',(req,res)=>{
 
 
 app.post('/insertevents', (req, res) => {
-  const sql = "INSERT INTO events (`title`, `start`, `end`) VALUES (?)";
+  const sql = "INSERT INTO events (`title`, `start`, `end`, `time`,`endtime`) VALUES (?)";
   const values=[
       req.body.title,
       req.body.start,
       req.body.end,
+      req.body.time,
+      req.body.endtime,
   ]
   con.query(sql,[values],(err,data)=> {
       if(err) {
