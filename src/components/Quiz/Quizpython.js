@@ -1,6 +1,5 @@
-import "./Quizgame.css";
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Quizpython() {
   const [activeQuestion, setActiveQuestion] = useState(0);
@@ -13,7 +12,7 @@ function Quizpython() {
     wrongAnswers: 0,
   });
 
- const quiz = {
+  const quiz = {
     topic: "Python",
     level: "Beginner",
     totalQuestions: 4,
@@ -52,15 +51,12 @@ function Quizpython() {
         correctAnswer: "None of the above",
       },
     ],
-    
   };
-  
 
   const { questions } = quiz;
   const { question, choices, correctAnswer } = questions[activeQuestion];
 
   const onClickNext = () => {
-    // again reset the selectedAnwerIndex, so it won't effect next question
     setSelectedAnswerIndex(null);
     setResult((prev) =>
       selectedAnswer
@@ -89,6 +85,26 @@ function Quizpython() {
   };
 
   const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
+
+  useEffect(() => {
+    if (showResult) {
+      const gameData = {
+        title: "Python", // Replace with the actual quiz title
+        score: result.score,
+        correctans: result.correctAnswers,
+        wrongans: result.wrongAnswers,
+        studentId: localStorage.getItem('studentId'),
+      };
+
+      axios.post('http://localhost:8081/storeGameData', gameData)
+        .then((response) => {
+          console.log('Game data stored successfully');
+        })
+        .catch((error) => {
+          console.error('Error storing game data', error);
+        });
+    }
+  }, [showResult]);
 
   return (
     <div className="quiz-container">

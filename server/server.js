@@ -396,3 +396,50 @@ app.get('/progress',(req,res)=>{
 
   })
 })
+
+app.post('/storeGameData', (req, res) => {
+  const {  title, score, correctans, wrongans, studentId } = req.body;
+  
+  // Insert the game result into a MySQL table
+  const sql = 'INSERT INTO quizscore (title, score, correctans, wrongans, studentId) VALUES (?, ?, ?, ?, ?)';
+  con.query(sql, [ title, score, correctans, wrongans,studentId], (err, result) => {
+    if (err) {
+      console.error('Error storing game data: ' + err);
+      res.status(500).json({ error: 'Error storing game data' });
+    } else {
+      res.status(200).json({ message: 'Game data stored successfully' });
+    }
+  });
+});
+
+app.get('/gameusers/:studentId', (req, res) => {
+  const studentId = req.params.studentId;
+  const sql = 'SELECT * FROM students WHERE id = ?';
+
+  con.query(sql, [studentId], (error, results) => {
+    if (error) {
+      console.error('Error fetching user details from the database:', error);
+      res.status(500).json({ error: 'Database error' });
+    } else if (results.length === 0) {
+      res.status(404).json({ error: 'User not found' });
+    } else {
+      const user = results[0];
+      res.json(user);
+    }
+  });
+});
+
+app.get('/game', (req, res) => {
+  const studentId = req.query.studentId;
+  if (!studentId) {
+    return res.status(400).json({ error: 'Student ID is required.' });
+  }
+  const query = 'SELECT title, score, correctans, wrongans FROM quizscore WHERE studentId = ?';
+  con.query(query, [studentId], (err, results) => {
+    if (err) {
+      console.error('Error fetching game statistics:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    res.json(results);
+  });
+});

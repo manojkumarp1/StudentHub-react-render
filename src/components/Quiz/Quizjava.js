@@ -1,5 +1,7 @@
 import "./Quizgame.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 function Quizjava() {
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState("");
@@ -11,35 +13,27 @@ function Quizjava() {
     wrongAnswers: 0,
   });
 
- const quiz = {
+  const quiz = {
     topic: "Java",
     level: "Beginner",
     totalQuestions: 4,
     perQuestionScore: 5,
     questions: [
       {
-        question:
-          "Who invented Java Programming?",
+        question: "Who invented Java Programming?",
         choices: ["Guido van Rossum", "James Gosling", "Dennis Ritchie", "Bjarne Stroustrup"],
         type: "MCQs",
         correctAnswer: "James Gosling",
       },
       {
-        question:
-          "Which statement is true about Java?",
+        question: "Which statement is true about Java?",
         choices: ["Java is a sequence-dependent programming language", "Java is a code dependent programming language", "Java is a platform-dependent programming language", "Java is a platform-independent programming language"],
         type: "MCQs",
         correctAnswer: "Java is a platform-independent programming language",
       },
       {
-        question:
-          "Which component is used to compile, debug and execute the java programs?",
-        choices: [
-          "JRE",
-          "JIT",
-          "JDK",
-          "JVM",
-        ],
+        question: "Which component is used to compile, debug and execute the java programs?",
+        choices: ["JRE", "JIT", "JDK", "JVM"],
         type: "MCQs",
         correctAnswer: "JDK",
       },
@@ -51,13 +45,11 @@ function Quizjava() {
       },
     ],
   };
-  
 
   const { questions } = quiz;
   const { question, choices, correctAnswer } = questions[activeQuestion];
 
   const onClickNext = () => {
-    // again reset the selectedAnwerIndex, so it won't effect next question
     setSelectedAnswerIndex(null);
     setResult((prev) =>
       selectedAnswer
@@ -86,6 +78,26 @@ function Quizjava() {
   };
 
   const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
+
+  useEffect(() => {
+    if (showResult) {
+      const gameData = {
+        title: "Java", // Replace with the actual quiz title
+        score: result.score,
+        correctans: result.correctAnswers,
+        wrongans: result.wrongAnswers,
+        studentId: localStorage.getItem('studentId'),
+      };
+
+      axios.post('http://localhost:8081/storeGameData', gameData)
+        .then((response) => {
+          console.log('Game data stored successfully');
+        })
+        .catch((error) => {
+          console.error('Error storing game data', error);
+        });
+    }
+  }, [showResult]);
 
   return (
     <div className="quiz-container">

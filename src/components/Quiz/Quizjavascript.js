@@ -1,6 +1,6 @@
 import "./Quizgame.css";
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Quizjavascript() {
   const [activeQuestion, setActiveQuestion] = useState(0);
@@ -13,7 +13,7 @@ function Quizjavascript() {
     wrongAnswers: 0,
   });
 
- const quiz = {
+  const quiz = {
     topic: "Javascript",
     level: "Beginner",
     totalQuestions: 4,
@@ -53,13 +53,11 @@ function Quizjavascript() {
       },
     ],
   };
-  
 
   const { questions } = quiz;
   const { question, choices, correctAnswer } = questions[activeQuestion];
 
   const onClickNext = () => {
-    // again reset the selectedAnwerIndex, so it won't effect next question
     setSelectedAnswerIndex(null);
     setResult((prev) =>
       selectedAnswer
@@ -88,6 +86,27 @@ function Quizjavascript() {
   };
 
   const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
+
+  useEffect(() => {
+    if (showResult) {
+      const gameData = {
+        title: "Javascript", // Replace with the actual quiz title
+        score: result.score,
+        correctans: result.correctAnswers,
+        wrongans: result.wrongAnswers,
+        studentId: localStorage.getItem('studentId'),
+      };
+
+      // Send game data to the server for storage
+      axios.post('http://localhost:8081/storeGameData', gameData)
+        .then((response) => {
+          console.log('Game data stored successfully');
+        })
+        .catch((error) => {
+          console.error('Error storing game data', error);
+        });
+    }
+  }, [showResult]);
 
   return (
     <div className="quiz-container">

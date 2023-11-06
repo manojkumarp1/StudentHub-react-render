@@ -1,6 +1,5 @@
-import "./Quizgame.css";
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Quizc() {
   const [activeQuestion, setActiveQuestion] = useState(0);
@@ -13,35 +12,27 @@ function Quizc() {
     wrongAnswers: 0,
   });
 
- const quiz = {
+  const quiz = {
     topic: "C Language",
     level: "Beginner",
     totalQuestions: 4,
     perQuestionScore: 5,
     questions: [
       {
-        question:
-          "Which keyword is used to define a variable in C language?",
+        question: "Which keyword is used to define a variable in C language?",
         choices: ["int", "var", "float", "None of the above"],
         type: "MCQs",
         correctAnswer: "int",
       },
       {
-        question:
-          "In C, what is the syntax to declare a constant?",
+        question: "In C, what is the syntax to declare a constant?",
         choices: ["#define CONSTANT_NAME value", "const CONSTANT_NAME = value", "constant CONSTANT_NAME = value", "None of the above"],
         type: "MCQs",
         correctAnswer: "#define CONSTANT_NAME value",
       },
       {
-        question:
-          "Which of the following is not a data type in C?",
-        choices: [
-          "int",
-          "double",
-          "string",
-          "char",
-        ],
+        question: "Which of the following is not a data type in C?",
+        choices: ["int", "double", "string", "char"],
         type: "MCQs",
         correctAnswer: "string",
       },
@@ -52,15 +43,12 @@ function Quizc() {
         correctAnswer: "printf()",
       },
     ],
-    
   };
-  
 
   const { questions } = quiz;
   const { question, choices, correctAnswer } = questions[activeQuestion];
 
   const onClickNext = () => {
-    // again reset the selectedAnwerIndex, so it won't effect next question
     setSelectedAnswerIndex(null);
     setResult((prev) =>
       selectedAnswer
@@ -89,6 +77,26 @@ function Quizc() {
   };
 
   const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
+
+  useEffect(() => {
+    if (showResult) {
+      const gameData = {
+        title: "C Language",
+        score: result.score,
+        correctans: result.correctAnswers,
+        wrongans: result.wrongAnswers,
+        studentId: localStorage.getItem('studentId'),
+      };
+
+      axios.post('http://localhost:8081/storeGameData', gameData)
+        .then((response) => {
+          console.log('Game data stored successfully');
+        })
+        .catch((error) => {
+          console.error('Error storing game data', error);
+        });
+    }
+  }, [showResult]);
 
   return (
     <div className="quiz-container">
