@@ -16,26 +16,32 @@ function Login() {
     setFormData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     
-    if (formData.email === 'admin@gmail.com' && formData.password === 'admin') {
+    const isAdminLogin = formData.email === 'admin@gmail.com' && formData.password === 'admin';
+    if (isAdminLogin) {
+
       localStorage.setItem('authenticatedUser', false);
       localStorage.setItem('authenticatedAdmin', true);
       navigate('/admincourses');
     } else {
 
       // Make an API request to the login endpoint without validation
-      axios.post('http://localhost:8081/login', formData)
+      const loginEndpoint = 'http://localhost:8081/login'; // Define the endpoint separately
+      axios.post(loginEndpoint, formData)
+
         .then((res) => {
-          if (res.data.Status === 'Success') {
+          const isLoginSuccessful = res.data.Status === 'Success';
+          if (isLoginSuccessful) {
+
+          
             localStorage.setItem('authenticatedUser', true);
             localStorage.setItem('authenticatedAdmin', false);
             const studentId = res.data.studentId;
             localStorage.setItem('studentId', studentId); // Store userId in localStorage
             setstudentId(studentId); 
-            navigate('/');
-            window.location.reload(); // Refresh the page
+            navigate('/', { replace: true }); // Navigate back to the home page without a full page reload
           } else {
             navigate('/signup');
           }

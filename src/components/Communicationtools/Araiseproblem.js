@@ -5,6 +5,7 @@ function Araiseproblem() {
   const [originalData, setOriginalData] = useState([]);
   const [data, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const API_BASE_URL = "http://localhost:8081";
 
   const handleStatusChange = (id, currentStatus) => {
     let newStatus;
@@ -40,7 +41,7 @@ function Araiseproblem() {
 
     // Call backend to update status
     axios
-      .put("http://localhost:8081/updateproblem", {
+      .put("${API_BASE_URL}/updateproblem", {
         id: id,
         stat: newStatus,
       })
@@ -66,7 +67,7 @@ function Araiseproblem() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/getproblem")
+      .get("${API_BASE_URL}/getproblem")
       .then((res) => {
         if (res.data.Status === "Success") {
           console.log(res.data.Result);
@@ -90,7 +91,7 @@ function Araiseproblem() {
   const handleDeleteRow = (id) => {
     // Call the server to delete the row
     axios
-    .delete(`http://localhost:8081/deleteproblem/${id}`)
+    .delete(`${API_BASE_URL}/deleteproblem/${id}`)
     .then(res => {
       if (res.data.Status === 'Success') {
         window.location.reload(true);

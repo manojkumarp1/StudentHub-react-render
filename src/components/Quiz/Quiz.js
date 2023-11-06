@@ -1,40 +1,34 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Quiz.css";
+
+const languages = [
+  { name: 'java', label: 'Java' },
+  { name: 'python', label: 'Python' },
+  { name: 'c', label: 'C' },
+  { name: 'javascript', label: 'Javascript' },
+];
 
 function QuizHome() {
   const navigate = useNavigate();
   const [selectedLanguage, setSelectedLanguage] = useState(null);
-
-  const languages = [
-    { name: 'java', label: 'Java' },
-    { name: 'python', label: 'Python' },
-    { name: 'c', label: 'C' },
-    { name: 'javascript', label: 'Javascript' },
-  ];
 
   const handleStartLanguage = (language) => {
     setSelectedLanguage(language);
   };
 
   const startGame = () => {
-    if (selectedLanguage === "java") {
-      navigate(`/quizjava`);
+    const languageRoutes = {
+      java: '/quizjava',
+      python: '/quizpython',
+      c: '/quizc',
+      javascript: '/quizjavascript',
+    };
+    const selectedRoute = languageRoutes[selectedLanguage];
     
-    }
-    if (selectedLanguage === "python") {
-      navigate(`/quizpython`);
-    
-    }
-    if (selectedLanguage === "c") {
-      navigate(`/quizc`);
-    
-    } 
-    if (selectedLanguage === "javascript") {
-      navigate(`/quizjavascript`);
-    
-    }
-    else {
+    if (selectedRoute) {
+      navigate(selectedRoute);
+    } else {
       // Display an error message or prompt the user to make selections.
     }
   };
@@ -57,8 +51,7 @@ function QuizHome() {
         </div>
       </div>
 
-
-      {( selectedLanguage) && (
+      {(selectedLanguage) && (
         <button className="start-button" onClick={startGame}>
           Start Quiz
         </button>

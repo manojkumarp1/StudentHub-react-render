@@ -9,20 +9,24 @@ function Course() {
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  useEffect(() => {
+  const fetchCourseData = () => {
     axios
       .get("http://localhost:8081/getcourses")
       .then((res) => {
         if (res.data.Status === "Success") {
           console.log(res.data.Result);
           setOriginalData(res.data.Result);
-          setFilteredData(res.data.Result); // Initialize filteredData with original data
+          setFilteredData(res.data.Result);
         } else {
           alert("Error");
         }
       })
       .catch((err) => console.log(err));
-  }, [])
+  };
+  
+  useEffect(() => {
+    fetchCourseData();
+  }, []);
   
   const handleSearch = (event) => {
     event.preventDefault();

@@ -37,8 +37,9 @@ function Home() {
     );
 
     const handleSearch = (e) => {
-        setSearchTerm(e.target.value);
+        setSearchTerm(prevSearchTerm => e.target.value);
     };
+    
 
     return (
         <div>

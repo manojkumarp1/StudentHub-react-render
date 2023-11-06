@@ -183,7 +183,7 @@ function Signup() {
                         </div>
                         <div>
                             <div className='col'>
-                                <button type='submit' id="loginButton" className='btn btn-success w-100 rounded-0'>Submit</button>
+                            <button type='submit' className='btn btn-success w-100 rounded-0'>Submit</button>
                             </div>
                             <div className='d-flex justify-content-center'>
                                 <p>Already a user?</p>

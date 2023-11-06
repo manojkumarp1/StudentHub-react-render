@@ -13,20 +13,21 @@ function SolutionForm() {
       navigate('/login');
     }
   }, []);
-  const handleUpdateSolution = () => {
-    // Send a PUT request to the server to update the solution
+  const updateSolution = () => {
     axios.put(`http://localhost:8081/updatesolution/${id}`, { solution })
       .then(response => {
         console.log(response.data);
-        navigate(`/tools`);
-        // Handle success, e.g., display a success message or redirect
-
       })
       .catch(error => {
         console.error(error);
-        // Handle error, e.g., display an error message
       });
   };
+  
+  const handleUpdateSolution = () => {
+    updateSolution();
+    navigate(`/tools`);
+  };
+  
 
   return (
     <div className='p-1 rounded w-25 border addform'>

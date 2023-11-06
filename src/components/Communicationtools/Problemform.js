@@ -14,9 +14,10 @@ function Problemform() {
   const navigate = useNavigate();
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('authenticatedUser');
-    if (isAuthenticated !== 'true') {
+    if (!isAuthenticated) {
       navigate('/login');
     }
+    
   }, []);
 
   const handleInput = event => {
@@ -42,11 +43,7 @@ function Problemform() {
   };
 
   return (
-    <>
-      <div className="body">
-        <div><br /></div>
-        <div></div>
-      </div>
+    <div className="body">
       <center>
         <h2>Submit Your Query Here</h2>
       </center>
@@ -93,7 +90,7 @@ function Problemform() {
           </form>
         </div>
       </div>
-    </>
+</div>
   );
 }
 

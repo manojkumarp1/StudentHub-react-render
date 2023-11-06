@@ -34,30 +34,37 @@ function Admincourse() {
 		  navigate('/login');
 		}
 	  });
-  const handleSearch = (event) => {
-    event.preventDefault();
-    const filteredResults = originalData.filter((item) =>
-      item.coursename.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredData(filteredResults);
-  };
-
-  const handleDelete = id => {
-    axios
-      .delete(`http://localhost:8081/deletecourse/${id}`)
-      .then(res => {
-        if (res.data.Status === 'Success') {
-          // Reload the page or update the state as needed
-          window.location.reload(true);
-        } else {
+    const filterData = () => {
+      const filteredResults = originalData.filter((item) =>
+        item.coursename.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredData(filteredResults);
+    };
+    
+    const handleSearch = (event) => {
+      event.preventDefault();
+      filterData();
+    };
+    
+    const handleDelete = id => {
+      const deleteCourse = async () => {
+        try {
+          const res = await axios.delete(`http://localhost:8081/deletecourse/${id}`);
+          if (res.data.Status === 'Success') {
+            // Reload the page or update the state as needed
+            window.location.reload(true);
+          } else {
+            alert('Error: Unable to delete course');
+          }
+        } catch (err) {
+          console.error('Error while deleting course:', err);
           alert('Error: Unable to delete course');
         }
-      })
-      .catch(err => {
-        console.error('Error while deleting course:', err);
-        alert('Error: Unable to delete course');
-      });
-  };
+      };
+    
+      deleteCourse();
+    };
+    
 
   return (
     <>

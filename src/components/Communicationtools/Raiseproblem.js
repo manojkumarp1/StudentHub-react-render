@@ -5,28 +5,35 @@ import { useNavigate } from 'react-router-dom';
 import './communication.css';
 function Raiseproblem() {
   const [originalData, setOriginalData] = useState([]);
-  const [data, setFilteredData] = useState([]);
+  const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  
   const navigate = useNavigate();
 
 
   useEffect(() => {
-    axios.get("http://localhost:8081/getproblem").then((res) => {
+    axios.get("http://localhost:8081/getproblem")
+    .then((res) => {
+      const result = res.data.Result;
+  
       if (res.data.Status === "Success") {
-        setOriginalData(res.data.Result);
-        setFilteredData(res.data.Result);
+        setOriginalData(result);
+        setData(result);
       } else {
         alert("Error");
       }
-    }).catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
+  
   }, []);
 
   const handleSearch = (event) => {
     event.preventDefault();
     const filteredResults = originalData.filter((item) =>
-      item.problem.toString().includes(searchQuery.toLowerCase())
+  item.problem.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    setFilteredData(filteredResults);
+  setData(filteredResults);
+
   };
 
   // Function to navigate to the solution form and pass the row ID
