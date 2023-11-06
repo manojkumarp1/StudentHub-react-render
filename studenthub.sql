@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2023 at 03:00 PM
+-- Generation Time: Nov 06, 2023 at 03:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -102,16 +102,19 @@ CREATE TABLE `events` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `start` date NOT NULL,
-  `end` date NOT NULL
+  `end` date NOT NULL,
+  `link` text NOT NULL,
+  `time` varchar(250) NOT NULL,
+  `endtime` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `start`, `end`) VALUES
-(1, 'Ganesh', '2023-10-02', '2023-10-19'),
-(2, 'Bharath', '2023-10-29', '2023-12-20');
+INSERT INTO `events` (`id`, `title`, `start`, `end`, `link`, `time`, `endtime`) VALUES
+(1, 'Python', '2023-10-02', '2023-10-03', 'https://www.youtube.com/watch?v=_uQrJ0TkZlc', '10:30 P.M', '11:00 P.M'),
+(2, 'Java', '2023-11-05', '2023-11-08', 'https://www.youtube.com/watch?v=eIrMbAQSU34', '10:15 A.M ', '11:30 A.M');
 
 -- --------------------------------------------------------
 
@@ -133,8 +136,33 @@ CREATE TABLE `problems` (
 --
 
 INSERT INTO `problems` (`id`, `name`, `email`, `problem`, `solution`, `stat`) VALUES
-(1, 'Pavan', 'pavan@gmail.com', 'i\'m facing course issue ', 'problem here', 'unverified'),
+(1, 'Pavan', 'pavan@gmail.com', 'i\'m facing course issue ', 'problem type here', 'unverified'),
 (2, 'Ganesh', 'Ganesh@gmail.com', 'i am facing quizz problem', 'refresh the page then start the quiz', 'verified');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quizscore`
+--
+
+CREATE TABLE `quizscore` (
+  `title` text NOT NULL,
+  `score` text NOT NULL,
+  `correctans` text NOT NULL,
+  `wrongans` text NOT NULL,
+  `studentId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `quizscore`
+--
+
+INSERT INTO `quizscore` (`title`, `score`, `correctans`, `wrongans`, `studentId`) VALUES
+('Java', '5', '1', '3', 5),
+('C Language', '10', '2', '2', 5),
+('Javascript', '5', '1', '3', 5),
+('Python', '0', '0', '4', 5),
+('Python', '5', '1', '3', 4);
 
 -- --------------------------------------------------------
 
