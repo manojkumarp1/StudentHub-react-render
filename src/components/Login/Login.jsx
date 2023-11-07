@@ -25,6 +25,7 @@ function Login() {
       localStorage.setItem('authenticatedUser', false);
       localStorage.setItem('authenticatedAdmin', true);
       navigate('/admincourses');
+      window.location.reload(true);
     } else {
 
       // Make an API request to the login endpoint without validation
