@@ -43,6 +43,7 @@ function Login() {
             localStorage.setItem('studentId', studentId); // Store userId in localStorage
             setstudentId(studentId); 
             navigate('/', { replace: true }); // Navigate back to the home page without a full page reload
+            window.location.reload(true);
           } else {
             navigate('/signup');
           }
