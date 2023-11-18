@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Profile.css';
 
 function Profile() {
   const [userData, setUserData] = useState({
@@ -89,7 +90,7 @@ function Profile() {
 
   return (
     <div>
-      <h1>Profile Page</h1>
+      <h1><center>Profile Page</center></h1>
       <form>
         <div>
           <label>First Name</label>
