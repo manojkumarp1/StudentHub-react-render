@@ -69,7 +69,28 @@ INSERT INTO `courses` (`id`, `coursename`, `imgurl`, `description`, `duration`) 
 (14, 'Dotnet', 'https://www.srishticampus.com/packageImages/dotnet_round.png', 'Harness the strength of a unified platform', '12 hours');
 
 -- --------------------------------------------------------
+--
+-- Table structure for table `resources`
+--
 
+CREATE TABLE `resources` (
+  `id` int(30) NOT NULL,
+  `title` varchar(300) NOT NULL,
+  `sourceurl` varchar(300) NOT NULL,
+  `imageurl` varchar(500) NOT NULL,
+  `author` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `resources`
+--
+
+INSERT INTO `resources` (`id`, `title`, `sourceurl`, `imageurl`, `author`) VALUES
+(1, 'Java', 'https://www.javatpoint.com/java-tutorial', 'https://logos-world.net/wp-content/uploads/2022/07/Java-Logo.png', 'Javatpoint'),
+(2, 'Python', 'https://www.geeksforgeeks.org/python-programming-language/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png', 'Geeks for Geeks'),
+(3, 'C++', 'https://www.w3schools.com/cpp/', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1ZStEOE4wgn4dwaAyhrF9XOcTa-us5u1n_V7vjXjXXA&s', 'W3Schools');
+
+-- --------------------------------------------------------
 --
 -- Table structure for table `enroll`
 --
