@@ -36,4 +36,13 @@ button:hover {
   background-color: #45a049;
 } */
 
+.update-prof{
+  padding: 10px 20px;
+  background-color: #12a89d;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin-left: 50%;
+}
+
 /* Add more styles as needed */
