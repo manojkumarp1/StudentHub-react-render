@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2023 at 05:36 AM
+-- Generation Time: Nov 18, 2023 at 06:33 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -90,9 +90,7 @@ INSERT INTO `enroll` (`id`, `name`, `selectedcourse`, `duration`) VALUES
 (3, 'ashok raj', 'Dotnet Language', '12 hours'),
 (4, 'ashok raj', 'Python Programming Language', '10 hours'),
 (5, 'ashok raj', 'Dotnet', '12 hours'),
-(6, 'Ganesh raj', 'Dotnet', '12 hours'),
-(7, 'ashok raj', 'Dotnet', '12 hours'),
-(8, 'ashok raj', 'Dotnet', '12 hours');
+(6, 'Ganesh raj', 'Dotnet', '12 hours');
 
 -- --------------------------------------------------------
 
@@ -104,17 +102,24 @@ CREATE TABLE `events` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `start` date NOT NULL,
-  `end` date NOT NULL
+  `end` date NOT NULL,
+  `link` text NOT NULL,
+  `time` varchar(250) NOT NULL,
+  `endtime` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `start`, `end`) VALUES
-(1, 'Ganesh', '2023-10-02', '2023-10-19'),
-(3, 'webinar', '2023-11-03', '2023-11-05'),
-(4, 'seminar', '2023-11-07', '2023-11-09');
+INSERT INTO `events` (`id`, `title`, `start`, `end`, `link`, `time`, `endtime`) VALUES
+(1, 'Python', '2023-10-02', '2023-10-03', 'https://www.youtube.com/watch?v=_uQrJ0TkZlc', '10:30 P.M', '11:00 P.M'),
+(2, 'Java', '2023-11-05', '2023-11-08', 'https://www.youtube.com/watch?v=eIrMbAQSU34', '10:15 A.M ', '11:30 A.M'),
+(3, 'Hai', '2023-11-17', '2023-11-24', '', 'Hai', 'Hai'),
+(4, 'Ganesh', '2023-11-17', '2023-11-18', '', 'Gani', 'Ga'),
+(5, 'Ganesh 123', '2023-12-13', '2023-12-27', 'http://localhost/phpmyadmin/', 'Gani', 'Ga'),
+(6, 'Pavan', '2023-11-10', '2023-11-11', '', 'Time1', 'Time 2'),
+(7, 'Bharath', '2023-10-13', '2023-10-28', '', 'Bhar', 'Bha');
 
 -- --------------------------------------------------------
 
@@ -136,9 +141,8 @@ CREATE TABLE `problems` (
 --
 
 INSERT INTO `problems` (`id`, `name`, `email`, `problem`, `solution`, `stat`) VALUES
-(1, 'Pavan', 'pavan@gmail.com', 'i\'m facing course issue ', 'm ledh prens', 'verified'),
-(2, 'Ganesh', 'Ganesh@gmail.com', 'i am facing quizz problem', 'refresh the page then start the quiz', 'verified'),
-(7, 'Ashok', '123@gmail.com', 'I am not able to open quizzes', 'click on quizzes in home page', 'verified');
+(1, 'Pavan', 'pavan@gmail.com', 'i\'m facing course issue ', 'problem type here', 'unverified'),
+(2, 'Ganesh', 'Ganesh@gmail.com', 'i am facing quizz problem', 'refresh the page then start the quiz', 'verified');
 
 -- --------------------------------------------------------
 
@@ -168,29 +172,6 @@ INSERT INTO `quizscore` (`title`, `score`, `correctans`, `wrongans`, `studentId`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resources`
---
-
-CREATE TABLE `resources` (
-  `id` int(30) NOT NULL,
-  `title` varchar(300) NOT NULL,
-  `sourceurl` varchar(300) NOT NULL,
-  `imageurl` varchar(500) NOT NULL,
-  `author` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `resources`
---
-
-INSERT INTO `resources` (`id`, `title`, `sourceurl`, `imageurl`, `author`) VALUES
-(1, 'Java', 'https://www.javatpoint.com/java-tutorial', 'https://logos-world.net/wp-content/uploads/2022/07/Java-Logo.png', 'Javatpoint'),
-(2, 'Python', 'https://www.geeksforgeeks.org/python-programming-language/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png', 'Geeks for Geeks'),
-(3, 'C++', 'https://www.w3schools.com/cpp/', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1ZStEOE4wgn4dwaAyhrF9XOcTa-us5u1n_V7vjXjXXA&s', 'W3Schools');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `students`
 --
 
@@ -213,8 +194,8 @@ INSERT INTO `students` (`id`, `firstname`, `lastname`, `dob`, `email`, `phone`, 
 (1, 'hi', 'hi', '0000-00-00', 'hi@gmail.com', 'hi', 'hi@gmail.com', NULL),
 (3, 'admin123', 'admin123', '0000-00-00', 'admin123@gmail.com', '1234567890', 'Pavan@180602', NULL),
 (4, 'ram', 'ram', '0000-00-00', 'ram@gmail.com', '9874561235', 'ram', NULL),
-(5, 'ashok', 'raj', '2023-10-04', 'raj@gmail.com', '9874563212', 'rajrajraj', '/uploads/apartment.jpg'),
-(6, 'admin', 'admin', '2023-10-06', 'admin@gmail.com', '9876543213', 'admin@gmail.com', NULL),
+(5, 'ashok', 'raj', '2023-10-06', 'raj@gmail.com', '9874563212', 'rajrajraj', '/uploads/apartment.jpg'),
+(6, 'admin', 'admin', '2023-10-06', 'admin@gmail.com', '9876543213', 'admin', NULL),
 (7, 'Pavan', 'Chintakayala', '2023-11-16', 'pa1chintakayala@gmail.com', '7671831838', 'pa1chintakayala@gmai', NULL),
 (8, 'Empty', 'Empty', '2023-11-13', 'empty@gmail.com', '1234567890', '1234567890', NULL);
 
@@ -253,12 +234,6 @@ ALTER TABLE `problems`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `resources`
---
-ALTER TABLE `resources`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
@@ -284,25 +259,19 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `enroll`
 --
 ALTER TABLE `enroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `problems`
 --
 ALTER TABLE `problems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `resources`
---
-ALTER TABLE `resources`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `students`
