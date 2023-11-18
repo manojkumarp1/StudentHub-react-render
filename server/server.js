@@ -443,3 +443,35 @@ app.get('/game', (req, res) => {
     res.json(results);
   });
 });
+app.get('/getresources',(req,res)=>{
+  const sql="SELECT * FROM resources";
+  con.query(sql,(err,result)=>{
+      if(err) return res,json({Error:"Got an error in the sql"});
+      return res.json({Status:"Success",Result:result})
+
+  })
+})
+app.post('/addresource', (req, res) => {
+  // SQL query to insert new course details into the database
+  const sql = "INSERT INTO resources (`title`, `sourceurl`, `imageurl`, `author`) VALUES (?)";
+  
+  // Values extracted from the incoming request
+  const values = [
+      req.body.title,
+      req.body.sourceurl,
+      req.body.imageurl,
+      req.body.author
+  ];
+  
+  // Execute the query
+  con.query(sql, [values], (err, data) => {
+      // Error handling for the query
+      if(err) {
+          console.error("Error occurred during query execution:", err); // log the detailed error
+          return res.status(500).json({status: 'Error', message: 'Unable to add course details to the database.'});
+      }
+
+      // Return a success response if course details were inserted successfully
+      return res.status(200).json({status: 'Success', message: 'Course details added successfully.', data: data});
+  });
+});

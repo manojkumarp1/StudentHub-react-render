@@ -25,6 +25,8 @@ import Quizjavascript from './components/Quiz/Quizjavascript';
 import Quizc from './components/Quiz/Quizc';
 import Progress from './components/Progresstracker/Progress';
 import Report from './components/Report/Report';
+import Academic from './components/Resources/Academic';
+import Addresource from './components/Resources/Addresource';
 function App() {
   
   return (
@@ -57,7 +59,9 @@ function App() {
             <Route path="/quizc" element={<Quizc />} />
             <Route path='/quiz' element={<QuizHome/>}/>
             <Route path='/progress/:name' element={<Progress/>}/>
-            <Route path='/report' element={<Report />}/>            
+            <Route path='/report' element={<Report />}/> 
+            <Route path='/resources' element={<Academic />}/>
+            <Route path='/addresource' element={<Addresource />}/>                                              
           </Routes>
         </div>
       </div>
