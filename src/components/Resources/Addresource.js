@@ -26,7 +26,7 @@ function Addresource() {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-      .post(`http://localhost:8081/addresource`, formValues)
+      .post(`https://studenthub-6hez.onrender.com/addresource`, formValues)
       .then(res => {
         if (res.data.status === 'Success') {
           navigate('/resources');

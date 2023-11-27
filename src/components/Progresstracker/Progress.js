@@ -9,7 +9,7 @@ function Progress() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8081/progress/`)
+            .get(`https://studenthub-6hez.onrender.com/progress/`)
             .then((res) => {
                 if (res.data.Status === "Success") {
                     console.log(res.data.Result);

@@ -18,7 +18,7 @@ function Profile() {
     const studentId = localStorage.getItem("studentId");
     if (studentId) {
       axios
-        .get(`http://localhost:8081/students/${studentId}`)
+        .get(`https://studenthub-6hez.onrender.com/students/${studentId}`)
         .then((response) => {
           if (response.data.Status === "Success") {
             setUserData(response.data.data);
@@ -48,7 +48,7 @@ function Profile() {
       formData.append("profilePic", file);
 
       axios
-        .post(`http://localhost:8081/uploadProfilePic`, formData, {
+        .post(`https://studenthub-6hez.onrender.com/uploadProfilePic`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -73,7 +73,7 @@ function Profile() {
     const studentId = localStorage.getItem("studentId");
     if (studentId) {
       axios
-        .put(`http://localhost:8081/students/${studentId}`, userData)
+        .put(`https://studenthub-6hez.onrender.com/students/${studentId}`, userData)
         .then((response) => {
           if (response.data.Status === "Success") {
             // Data updated successfully

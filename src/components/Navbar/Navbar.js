@@ -31,7 +31,7 @@ function Navbar() {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
       axios
-        .get(`http://localhost:8081/students/${studentId}`)
+        .get(`https://studenthub-6hez.onrender.com/${studentId}`)
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);
@@ -85,7 +85,7 @@ function Navbar() {
   useEffect(() => {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
-      fetch(`http://localhost:8081/students/${studentId}`)
+      fetch(`https://studenthub-6hez.onrender.com/students/${studentId}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.Status === 'Success') {
