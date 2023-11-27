@@ -5,6 +5,9 @@ import cookieParser from 'cookie-parser'
 import bodyParser from "body-parser";
 import multer from "multer";
 import path from 'path'; 
+import dotenv from 'dotenv'; // Import dotenv
+
+dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 app.use(cors());
@@ -13,11 +16,11 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database:"studenthub",
-})
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+});
 
 con.connect(function(err) {
     if(err) {   
@@ -27,9 +30,10 @@ con.connect(function(err) {
         console.log("SQL server Connected");
     }
 })
-app.listen(8081, ()=> {
-    console.log("Running");
-})
+
+app.listen(process.env.SERVER_PORT, () => {
+  console.log("Running");
+});
 
 // Configure Multer for profile picture uploads
 const storage = multer.diskStorage({
