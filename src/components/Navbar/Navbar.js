@@ -31,7 +31,7 @@ function Navbar() {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
       axios
-        .get(`https://student-hub-portal.onrender.com/${studentId}`)
+        .get(`https://student-hub-portal.onrender.com/students/${studentId}`)
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);

@@ -22,7 +22,7 @@ function EditCourse() {
 	  });
 
   useEffect(() => {
-    axios.get(`https://student-hub-portal.onrender.com/getcourses/` + id)
+    axios.get(`https://student-hub-portal.onrender.com/getcourse/` + id)
       .then(res => {
         const {
             id,	

@@ -91,7 +91,7 @@ function Araiseproblem() {
   const handleDeleteRow = (id) => {
     // Call the server to delete the row
     axios
-    .delete(`https://student-hub-portal.onrender.com/${id}`)
+    .delete(`https://student-hub-portal.onrender.com/deleteproblem/${id}`)
     .then(res => {
       if (res.data.Status === 'Success') {
         window.location.reload(true);
