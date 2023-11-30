@@ -100,7 +100,7 @@ function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem('studentId'); // Clear studentId from local storage
-    navigate('/'); // Navigate to the login page
+    navigate('/',{ replace: false }); // Navigate to the login page
     localStorage.removeItem('authenticatedUser');
     localStorage.removeItem('authenticatedAdmin');
   };

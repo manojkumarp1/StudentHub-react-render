@@ -38,6 +38,7 @@ function App() {
         <div className='app-content'>
           <Routes>
             <Route path='/' element={<Login/>}/>
+            <Route path='/login' element={<Login/>}/>
             <Route path='/home' element={<Home/>}/>
             <Route path='/courses' element={<Course/>}/>
             <Route path='/courses/:id' element={<Course/>}/>
