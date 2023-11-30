@@ -36,7 +36,7 @@ function Enrollform() {
 
   useEffect(() => {
     axios
-      .get('https://studenthub-6hez.onrender.com/getcourse/' + id)
+      .get('https://student-hub-portal.onrender.com/getcourse/' + id)
       .then(res => {
           // eslint-disable-next-line
         const { coursename, description, duration } = res.data.Result[0];
@@ -55,7 +55,7 @@ function Enrollform() {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
       axios
-        .get(`https://studenthub-6hez.onrender.com/${studentId}`)
+        .get(`https://student-hub-portal.onrender.com/${studentId}`)
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);
