@@ -100,7 +100,7 @@ function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem('studentId'); // Clear studentId from local storage
-    navigate('/login'); // Navigate to the login page
+    navigate('/'); // Navigate to the login page
     localStorage.removeItem('authenticatedUser');
     localStorage.removeItem('authenticatedAdmin');
   };
@@ -127,7 +127,7 @@ function Navbar() {
               {userData.firstname}
             </div>
           ) : (
-            <a href="/login" className="user-name-button">
+            <a href="/" className="user-name-button">
               {isAdmin ? 'Admin' : 'Login'}
             </a>
           )}

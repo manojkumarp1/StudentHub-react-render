@@ -17,7 +17,7 @@ function Home() {
 
     const items = [
         {
-            src: "https://www.universitytimes.in/wp-content/uploads/2022/06/Assignment-696x464.jpg",
+            src: "https://t3.ftcdn.net/jpg/03/09/59/80/360_F_309598037_FrfMLAfTQrstsVg5SZMaGH1Uef6s69EB.jpg",
             caption: "Assignments",
             toroute:'/'
         },
