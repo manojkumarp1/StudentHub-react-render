@@ -55,7 +55,7 @@ function Enrollform() {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
       axios
-        .get(`https://student-hub-portal.onrender.com/enrollcourse/${studentId}`)
+        .get(`https://student-hub-portal.onrender.com/students/${studentId}`)
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);
