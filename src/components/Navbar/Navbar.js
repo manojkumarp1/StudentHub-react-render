@@ -31,7 +31,7 @@ function Navbar() {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
       axios
-        .get(`https://studenthub-6hez.onrender.com/${studentId}`)
+        .get(`https://student-hub-portal.onrender.com/${studentId}`)
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);
@@ -54,7 +54,7 @@ function Navbar() {
   const navigationData = [
     {
       navName: 'Home',
-      navRoute: '/',
+      navRoute: '/home',
     },
     {
       navName: 'Courses',
@@ -103,7 +103,6 @@ function Navbar() {
     navigate('/login'); // Navigate to the login page
     localStorage.removeItem('authenticatedUser');
     localStorage.removeItem('authenticatedAdmin');
-    window.location.reload(); // Refresh the page
   };
 
   return (

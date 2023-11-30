@@ -37,7 +37,8 @@ function App() {
         </div>
         <div className='app-content'>
           <Routes>
-            <Route path='/login' element={<Home/>}/>
+            <Route path='/' element={<Login/>}/>
+            <Route path='/home' element={<Home/>}/>
             <Route path='/courses' element={<Course/>}/>
             <Route path='/courses/:id' element={<Course/>}/>
             <Route path='/getcourse/:id' element={<Course/>}/>
