@@ -78,7 +78,7 @@ function Enrollform() {
     event.preventDefault();
 
     axios
-      .post('https://studenthub-6hez.onrender.com/enrollcourse', formValues)
+      .post('https://student-hub-portal.onrender.com/enrollcourse', formValues)
       .then((res) => {
         navigate('/progress/'+formValues.name);
       })

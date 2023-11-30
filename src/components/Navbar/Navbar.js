@@ -85,7 +85,7 @@ function Navbar() {
   useEffect(() => {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
-      fetch(`https://studenthub-6hez.onrender.com/students/${studentId}`)
+      fetch(`https://student-hub-portal.onrender.com/students/${studentId}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.Status === 'Success') {
@@ -113,7 +113,7 @@ function Navbar() {
           <div className="profile-img">
             {userData.id ? (
               <NavLink to="/profile" className="nav-profile-link">
-                <img className="image" src={`http://localhost:8081${userData.profilePic}`} alt="profilepic" />
+                <img className="image" src={`https://student-hub-portal.onrender.com${userData.profilePic}`} alt="profilepic" />
               </NavLink>
             ) : (
               <img

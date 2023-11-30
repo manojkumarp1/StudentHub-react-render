@@ -12,7 +12,7 @@ function Raiseproblem() {
 
 
   useEffect(() => {
-    axios.get("https://studenthub-6hez.onrender.com/getproblem")
+    axios.get("https://student-hub-portal.onrender.com/getproblem")
     .then((res) => {
       const result = res.data.Result;
   

@@ -11,7 +11,7 @@ function Course() {
   const [searchQuery, setSearchQuery] = useState("");
   const fetchCourseData = () => {
     axios
-      .get("https://studenthub-6hez.onrender.com/getcourses")
+      .get("hhttps://student-hub-portal.onrender.com/getcourses")
       .then((res) => {
         if (res.data.Status === "Success") {
           console.log(res.data.Result);

@@ -29,7 +29,7 @@ function Login() {
     } else {
 
       // Make an API request to the login endpoint without validation
-      const loginEndpoint = 'https://studenthub-6hez.onrender.com/login'; // Define the endpoint separately
+      const loginEndpoint = 'https://student-hub-portal.onrender.com/login'; // Define the endpoint separately
       axios.post(loginEndpoint, formData)
 
         .then((res) => {

@@ -26,7 +26,7 @@ function Addcourse() {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-      .post(`https://studenthub-6hez.onrender.com/addcourse`, formValues)
+      .post(`https://student-hub-portal.onrender.com/addcourse`, formValues)
       .then(res => {
         if (res.data.status === 'Success') {
           navigate('/admincourses');
