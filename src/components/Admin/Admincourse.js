@@ -105,10 +105,10 @@ function Admincourse() {
                     <p className="course-duration">Duration:{val.duration}</p>
                     <div className="icon-wrapper">
                       <Link to={`/editcourse/` + val.id}>
-                        <FaEdit />
+                        <FaEdit style={{ color: '#12a89d' }}/>
                       </Link>
                       <Link onClick={e => handleDelete(val.id)} id="deleteCourse" className="deleteButton">
-                        <FaTrash />
+                        <FaTrash style={{ color: '#12a89d' }}/>
                       </Link>
                     </div>
                   </div>
