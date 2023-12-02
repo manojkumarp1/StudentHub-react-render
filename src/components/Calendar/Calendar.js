@@ -15,7 +15,7 @@ import axios from "axios";
 const locales = {
   "en-US": enUS,
 };
-
+const [currentView, setCurrentView] = useState("month");
 const localizer = dateFnsLocalizer({
   format,
   parse,
