@@ -42,6 +42,16 @@ function EventComponent1({ event }) {
     </div>
   );
 }
+const EventWrapper = ({ event, children }) => {
+  // Check the view name to determine which component to render
+  const isMonthView = event.view === 'month';
+
+  if (isMonthView) {
+    return <EventComponent event={event} />;
+  } else {
+    return <EventComponent1 event={event} />;
+  }
+};
 
 function CalendarApp() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -120,8 +130,7 @@ function CalendarApp() {
         views={["month", "agenda"]} // Only 'month' and 'agenda' views
         defaultView="month"
         components={{
-          event: EventComponent,
-          evenr:EventComponent1
+          event: EventWrapper,
         }}
       />
       {isAdmin && (
