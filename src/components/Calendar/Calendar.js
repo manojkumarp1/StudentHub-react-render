@@ -49,9 +49,10 @@ const EventWrapper = ({ event, children }) => {
   if (isMonthView) {
     return <EventComponent event={event} />;
   } else {
-    return <EventComponent1 event={event} />;
+    return <EventComponent1 event={event}>{children}</EventComponent1>;
   }
 };
+
 
 function CalendarApp() {
   const [isAdmin, setIsAdmin] = useState(false);
