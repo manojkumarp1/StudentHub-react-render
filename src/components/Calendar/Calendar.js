@@ -29,9 +29,6 @@ function EventComponent({ event }) {
   return (
     <div>
       <strong>{event.title}</strong>
-      {event.link && <p>Link: {event.link}</p>}
-      {event.time && <p>Time: {event.time}</p>}
-      {event.endtime && <p>End Time: {event.endtime}</p>}
     </div>
   );
 }
