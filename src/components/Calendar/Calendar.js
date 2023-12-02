@@ -24,15 +24,15 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-// Define the EventComponent here
-function EventComponent({ event }) {
+function MonthEventComponent({ event }) {
   return (
     <div>
       <strong>{event.title}</strong>
     </div>
   );
 }
-function EventComponent1({ event }) {
+
+function AgendaEventComponent({ event }) {
   return (
     <div>
       <strong>{event.title}</strong>
@@ -42,16 +42,6 @@ function EventComponent1({ event }) {
     </div>
   );
 }
-const EventWrapper = ({ event, children }) => {
-  // Check the view name to determine which component to render
-  const isMonthView = event.view === 'month';
-
-  if (isMonthView) {
-    return <EventComponent event={event} />;
-  } else {
-    return <EventComponent1 event={event}>{children}</EventComponent1>;
-  }
-};
 
 
 function CalendarApp() {
@@ -122,17 +112,19 @@ function CalendarApp() {
 
   return (
     <div>
-      <Calendar
+       <Calendar
         localizer={localizer}
         events={allEvents}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500 }}
-        views={["month", "agenda"]} // Only 'month' and 'agenda' views
+        views={["month", "agenda"]}
         defaultView="month"
         components={{
-          event: EventWrapper,
+          event:
+            currentView === "month" ? MonthEventComponent : AgendaEventComponent,
         }}
+        onView={(view) => setCurrentView(view)}
       />
       {isAdmin && (
         <div className="add-events-admin">
