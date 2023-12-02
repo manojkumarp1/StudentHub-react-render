@@ -15,7 +15,6 @@ import axios from "axios";
 const locales = {
   "en-US": enUS,
 };
-const [currentView, setCurrentView] = useState("month");
 const localizer = dateFnsLocalizer({
   format,
   parse,
@@ -46,6 +45,7 @@ function AgendaEventComponent({ event }) {
 
 function CalendarApp() {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [currentView, setCurrentView] = useState("month");
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("authenticatedAdmin");
     if (isAuthenticated === "true") {
