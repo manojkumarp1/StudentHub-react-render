@@ -25,7 +25,7 @@ function Login() {
       localStorage.setItem('authenticatedUser', false);
       localStorage.setItem('authenticatedAdmin', true);
       navigate('/admincourses');
-      windows.reload(true);
+      window.location.reload(true);
     } else {
 
       // Make an API request to the login endpoint without validation
@@ -43,7 +43,7 @@ function Login() {
             localStorage.setItem('studentId', studentId); // Store userId in localStorage
             setstudentId(studentId); 
             navigate('/home', { replace: true }); // Navigate back to the home page without a full page reload
-            windows.reload(true);
+            window.location.reload(true);
           } else {
             navigate('/signup');
           }
