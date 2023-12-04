@@ -103,6 +103,7 @@ function Navbar() {
     navigate('/',{ replace: false }); // Navigate to the login page
     localStorage.removeItem('authenticatedUser');
     localStorage.removeItem('authenticatedAdmin');
+    window.location.reload(true);
   };
 
   return (
