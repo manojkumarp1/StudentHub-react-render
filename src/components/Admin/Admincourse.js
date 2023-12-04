@@ -51,7 +51,6 @@ function Admincourse() {
         try {
           const res = await axios.delete(`https://student-hub-portal.onrender.com/deletecourse/${id}`);
           if (res.data.Status === 'Success') {
-            // Reload the page or update the state as needed
             window.location.reload(true);
           } else {
             alert('Error: Unable to delete course');
