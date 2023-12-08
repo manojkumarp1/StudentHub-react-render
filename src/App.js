@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
@@ -28,6 +28,12 @@ import Report from './components/Report/Report';
 import Academic from './components/Resources/Academic';
 import Addresource from './components/Resources/Addresource';
 function App() {
+  useEffect(() => {
+    document.title = 'Student Hub';
+    return () => {
+      document.title = 'Student Hub';
+    };
+  }, []);
   
   return (
     <Router>

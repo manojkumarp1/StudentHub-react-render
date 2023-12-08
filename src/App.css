@@ -10,3 +10,15 @@
   padding: 20px;
   margin: 0 auto;
 }
+body {
+  color: #000;
+  background-color: #fff;
+}
+
+.nav-names {
+  color: #000 !important;
+}
+
+.nav-logout {
+  color: #f00;
+}
