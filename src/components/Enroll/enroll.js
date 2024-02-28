@@ -36,7 +36,7 @@ function Enrollform() {
 
   useEffect(() => {
     axios
-      .get('https://student-hub-portal.onrender.com/getcourse/' + id)
+      .get('http://localhost:3001/getcourse/' + id)
       .then(res => {
           // eslint-disable-next-line
         const { coursename, description, duration } = res.data.Result[0];
@@ -55,7 +55,7 @@ function Enrollform() {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
       axios
-        .get(`https://student-hub-portal.onrender.com/students/${studentId}`)
+        .get(`http://localhost:3001/students/${studentId}`)
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);
@@ -78,7 +78,7 @@ function Enrollform() {
     event.preventDefault();
 
     axios
-      .post('https://student-hub-portal.onrender.com/enrollcourse', formValues)
+      .post('http://localhost:3001/enrollcourse', formValues)
       .then((res) => {
         navigate('/progress/'+formValues.name);
       })

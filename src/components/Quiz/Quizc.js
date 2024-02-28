@@ -88,7 +88,7 @@ function Quizc() {
         studentId: localStorage.getItem('studentId'),
       };
 
-      axios.post('https://studenthub-6hez.onrender.com/storeGameData', gameData)
+      axios.post('http://studenthub-6hez.onrender.com/storeGameData', gameData)
         .then((response) => {
           console.log('Game data stored successfully');
         })

@@ -22,7 +22,7 @@ function EditCourse() {
 	  });
 
   useEffect(() => {
-    axios.get(`https://student-hub-portal.onrender.com/getcourse/` + id)
+    axios.get(`http://localhost:3001/getcourse/` + id)
       .then(res => {
         const {
             id,	
@@ -52,7 +52,7 @@ function EditCourse() {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-      .put(`https://student-hub-portal.onrender.com/updatecourse/` + id, formValues)
+      .put(`http://localhost:3001/updatecourse/` + id, formValues)
       .then(res => {
         if (res.data.Status === 'Success') {
           // Redirect to the appropriate page or update the state as needed

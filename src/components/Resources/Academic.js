@@ -19,7 +19,7 @@ function Academic() {
   const navigate = useNavigate();
   const fetchCourseData = () => {
     axios
-      .get("https://student-hub-portal.onrender.com/getresources")
+      .get("http://localhost:3001/getresources")
       .then((res) => {
         if (res.data.Status === "Success") {
           console.log(res.data.Result);

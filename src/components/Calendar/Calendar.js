@@ -66,7 +66,7 @@ function CalendarApp() {
   useEffect(() => {
     // Fetch events from the server
     axios
-      .get("https://student-hub-portal.onrender.com/events")
+      .get("http://localhost:3001/events")
       .then((response) => {
         setAllEvents(response.data.Result); // Assuming events are in the 'Result' property of the response
       })
@@ -82,7 +82,7 @@ function CalendarApp() {
 
     // Send the new event to the server
     axios
-      .post("https://student-hub-portal.onrender.com/insertevents", {
+      .post("http://localhost:3001/insertevents", {
         title: newEvent.title,
         start: formattedStart,
         end: formattedEnd,

@@ -31,7 +31,7 @@ function Navbar() {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
       axios
-        .get(`https://student-hub-portal.onrender.com/students/${studentId}`)
+        .get(`http://localhost:3001/students/${studentId}`)
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);
@@ -85,7 +85,7 @@ function Navbar() {
   useEffect(() => {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
-      fetch(`https://student-hub-portal.onrender.com/students/${studentId}`)
+      fetch(`http://localhost:3001/students/${studentId}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.Status === 'Success') {
@@ -113,12 +113,12 @@ function Navbar() {
           <div className="profile-img">
             {userData.id ? (
               <NavLink to="/profile" className="nav-profile-link">
-                <img className="image" src={`https://student-hub-portal.onrender.com${userData.profilePic}`} alt="profilepic" />
+                <img className="image" src={`http://localhost:3001${userData.profilePic}`} alt="profilepic" />
               </NavLink>
             ) : (
               <img
                 className="image"
-                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                src="http://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                 alt="profilepic"
               />
             )}

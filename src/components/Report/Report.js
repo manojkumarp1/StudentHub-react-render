@@ -9,7 +9,7 @@ const Report = () => {
     // Fetch user details from the login table
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
-      axios.get(`https://student-hub-portal.onrender.com/gameusers/${studentId}`)
+      axios.get(`http://localhost:3001/gameusers/${studentId}`)
         .then((response) => {
           setUser(response.data);
         })
@@ -19,7 +19,7 @@ const Report = () => {
     }
 
     // Fetch game statistics from the quizscore table
-    axios.get(`https://student-hub-portal.onrender.com/game?studentId=${studentId}`)
+    axios.get(`http://localhost:3001/game?studentId=${studentId}`)
       .then((response) => {
         setGameStats(response.data);
       })

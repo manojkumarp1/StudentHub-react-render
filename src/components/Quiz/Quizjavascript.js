@@ -98,7 +98,7 @@ function Quizjavascript() {
       };
 
       // Send game data to the server for storage
-      axios.post('https://student-hub-portal.onrender.com/storeGameData', gameData)
+      axios.post('http://localhost:3001/storeGameData', gameData)
         .then((response) => {
           console.log('Game data stored successfully');
         })

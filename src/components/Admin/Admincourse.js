@@ -16,7 +16,7 @@ function Admincourse() {
 
   useEffect(() => {
     axios
-      .get("https://student-hub-portal.onrender.com/getcourses")
+      .get("http://localhost:3001/getcourses")
       .then((res) => {
         if (res.data.Status === "Success") {
           console.log(res.data.Result);
@@ -49,7 +49,7 @@ function Admincourse() {
     const handleDelete = id => {
       const deleteCourse = async () => {
         try {
-          const res = await axios.delete(`https://student-hub-portal.onrender.com/deletecourse/${id}`);
+          const res = await axios.delete(`http://localhost:3001/deletecourse/${id}`);
           if (res.data.Status === 'Success') {
             window.location.reload(true);
           } else {

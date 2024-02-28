@@ -1,13 +1,11 @@
 import express from "express"
-import mysql from "mysql"
+import mysql from "mysql2"
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import bodyParser from "body-parser";
 import multer from "multer";
 import path from 'path'; 
-import dotenv from 'dotenv'; // Import dotenv
 
-dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 app.use(cors());
@@ -16,11 +14,15 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 const con = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "manoj",
+  database: "studenthub",
+   // Set to a higher value in milliseconds
 });
+
+
 
 con.connect(function(err) {
     if(err) {   
@@ -31,7 +33,7 @@ con.connect(function(err) {
     }
 })
 
-app.listen(process.env.SERVER_PORT, () => {
+app.listen(3001, () => {
   console.log("Running");
 });
 
@@ -145,6 +147,7 @@ app.post('/signup', (req, res) => {
 
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
+  console.log(email,password)
   const query = 'SELECT * FROM students WHERE email = ? AND password = ?';
 
   con.query(query, [email, password], (err, results) => {

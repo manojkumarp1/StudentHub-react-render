@@ -5,7 +5,7 @@ function Araiseproblem() {
   const [originalData, setOriginalData] = useState([]);
   const [data, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const API_BASE_URL = "https://student-hub-portal.onrender.com";
+  const API_BASE_URL = "http://localhost:3001";
 
   const handleStatusChange = (id, currentStatus) => {
     let newStatus;
@@ -41,7 +41,7 @@ function Araiseproblem() {
 
     // Call backend to update status
     axios
-      .put("https://student-hub-portal.onrender.com/updateproblem", {
+      .put("http://localhost:3001/updateproblem", {
         id: id,
         stat: newStatus,
       })
@@ -67,7 +67,7 @@ function Araiseproblem() {
 
   useEffect(() => {
     axios
-      .get("https://student-hub-portal.onrender.com/getproblem")
+      .get("http://localhost:3001/getproblem")
       .then((res) => {
         if (res.data.Status === "Success") {
           console.log(res.data.Result);
@@ -91,7 +91,7 @@ function Araiseproblem() {
   const handleDeleteRow = (id) => {
     // Call the server to delete the row
     axios
-    .delete(`https://student-hub-portal.onrender.com/deleteproblem/${id}`)
+    .delete(`http://localhost:3001/deleteproblem/${id}`)
     .then(res => {
       if (res.data.Status === 'Success') {
         window.location.reload(true);
