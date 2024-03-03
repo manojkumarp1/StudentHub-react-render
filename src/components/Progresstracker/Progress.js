@@ -10,7 +10,7 @@ function Progress() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3001/progress/`)
+            .get(`http://localhost:8080/progress`)
             .then((res) => {
                 if (res.data.Status === "Success") {
                     const initializedData = res.data.Result.map((item) => ({
@@ -20,7 +20,7 @@ function Progress() {
                     console.log(initializedData);
                     setData(initializedData);
                 } else {
-                    alert("Error");
+                    alert("Error found");
                 }
             })
             .catch((err) => console.log(err));
@@ -46,7 +46,7 @@ function Progress() {
 
         // Update progress on the server
         axios
-            .put(`http://localhost:3001/progress/${id}`, {
+            .put(`http://localhost:8080/progress/${id}`, {
                 progress: Math.min(1, data.find((item) => item.id === id).progress + randomPercentage / 100),
             })
             .then((res) => {

@@ -19,7 +19,7 @@ function Academic() {
   const navigate = useNavigate();
   const fetchCourseData = () => {
     axios
-      .get("http://localhost:3001/getresources")
+      .get("http://localhost:8080/getResources")
       .then((res) => {
         if (res.data.Status === "Success") {
           console.log(res.data.Result);

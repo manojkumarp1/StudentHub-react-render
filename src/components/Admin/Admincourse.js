@@ -16,7 +16,7 @@ function Admincourse() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/getcourses")
+      .get("http://localhost:8080/getCourses")
       .then((res) => {
         if (res.data.Status === "Success") {
           console.log(res.data.Result);
@@ -49,7 +49,7 @@ function Admincourse() {
     const handleDelete = id => {
       const deleteCourse = async () => {
         try {
-          const res = await axios.delete(`http://localhost:3001/deletecourse/${id}`);
+          const res = await axios.delete(`http://localhost:8080/deleteCourse/${id}`);
           if (res.data.Status === 'Success') {
             window.location.reload(true);
           } else {
@@ -106,7 +106,7 @@ function Admincourse() {
                       <Link to={`/editcourse/` + val.id}>
                         <FaEdit style={{ color: '#12a89d' }}/>
                       </Link>
-                      <Link onClick={e => handleDelete(val.id)} id="deleteCourse" className="deleteButton">
+                      <Link onClick={e => handleDelete(val.id)} id="deleteCourse" className="deleteButton">  
                         <FaTrash style={{ color: '#12a89d' }}/>
                       </Link>
                     </div>

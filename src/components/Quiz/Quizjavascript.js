@@ -94,11 +94,11 @@ function Quizjavascript() {
         score: result.score,
         correctans: result.correctAnswers,
         wrongans: result.wrongAnswers,
-        studentId: localStorage.getItem('studentId'),
+        student: localStorage.getItem('studentId'),
       };
 
       // Send game data to the server for storage
-      axios.post('http://localhost:3001/storeGameData', gameData)
+      axios.post('http://localhost:8080/storeGameData', gameData)
         .then((response) => {
           console.log('Game data stored successfully');
         })

@@ -31,7 +31,7 @@ function Navbar() {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
       axios
-        .get(`http://localhost:3001/students/${studentId}`)
+        .get(`http://localhost:8080/students/${studentId}`)
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);
@@ -85,7 +85,7 @@ function Navbar() {
   useEffect(() => {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
-      fetch(`http://localhost:3001/students/${studentId}`)
+      fetch(`http://localhost:8080/students/${studentId}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.Status === 'Success') {
@@ -113,7 +113,7 @@ function Navbar() {
           <div className="profile-img">
             {userData.id ? (
               <NavLink to="/profile" className="nav-profile-link">
-                <img className="image" src={`http://localhost:3001${userData.profilePic}`} alt="profilepic" />
+                <img className="image" src={`http://localhost:8080${userData.profilePic}`} alt="profilepic" />
               </NavLink>
             ) : (
               <img

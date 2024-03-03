@@ -36,10 +36,10 @@ function Enrollform() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/getcourse/' + id)
+      .get('http://localhost:8080/getCourse/' + id)
       .then(res => {
           // eslint-disable-next-line
-        const { coursename, description, duration } = res.data.Result[0];
+        const { coursename, description, duration } = res.data.Result;
 
         setFormValues(prev => ({
           ...prev,
@@ -55,7 +55,7 @@ function Enrollform() {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
       axios
-        .get(`http://localhost:3001/students/${studentId}`)
+        .get(`http://localhost:8080/students/${studentId}`)
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);
@@ -78,7 +78,7 @@ function Enrollform() {
     event.preventDefault();
 
     axios
-      .post('http://localhost:3001/enrollcourse', formValues)
+      .post('http://localhost:8080/enrollCourse', formValues)
       .then((res) => {
         navigate('/progress/'+formValues.name);
       })

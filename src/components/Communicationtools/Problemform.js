@@ -28,7 +28,7 @@ function Problemform() {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-      .post(`http://localhost:3001/addproblem`, formValues)
+      .post(`http://localhost:8080/addProblem`, formValues)
       .then(res => {
         if (res.data.status === 'Success') {
           navigate('/tools');

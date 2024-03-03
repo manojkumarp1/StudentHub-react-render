@@ -26,9 +26,9 @@ function Addcourse() {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-      .post(`http://localhost:3001/addcourse`, formValues)
+      .post(`http://localhost:8080/addCourse`, formValues)
       .then(res => {
-        if (res.data.status === 'Success') {
+        if (res.data.Status === 'Success') {
           navigate('/admincourses');
         } else {
           alert('Error: Unable to add course');

@@ -12,7 +12,7 @@ function Raiseproblem() {
 
 
   useEffect(() => {
-    axios.get("http://localhost:3001/getproblem")
+    axios.get("http://localhost:8080/getProblems")
     .then((res) => {
       const result = res.data.Result;
   

@@ -26,7 +26,7 @@ function Addresource() {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-      .post(`http://localhost:3001/addresource`, formValues)
+      .post(`http://localhost:8080/addResources`, formValues)
       .then(res => {
         if (res.data.status === 'Success') {
           navigate('/resources');

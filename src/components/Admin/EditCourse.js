@@ -22,7 +22,7 @@ function EditCourse() {
 	  });
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/getcourse/` + id)
+    axios.get(`http://localhost:8080/getCourse/` + id)
       .then(res => {
         const {
             id,	
@@ -30,7 +30,7 @@ function EditCourse() {
             imgurl,	
             description,	
             duration
-        } = res.data.Result[0];
+        } = res.data.Result;
 
         setFormValues({
             id,	
@@ -52,7 +52,7 @@ function EditCourse() {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-      .put(`http://localhost:3001/updatecourse/` + id, formValues)
+      .put(`http://localhost:8080/updateCourse/` + id, formValues)
       .then(res => {
         if (res.data.Status === 'Success') {
           // Redirect to the appropriate page or update the state as needed

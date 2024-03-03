@@ -85,10 +85,10 @@ function Quizc() {
         score: result.score,
         correctans: result.correctAnswers,
         wrongans: result.wrongAnswers,
-        studentId: localStorage.getItem('studentId'),
+        student: localStorage.getItem('studentId'),
       };
 
-      axios.post('http://studenthub-6hez.onrender.com/storeGameData', gameData)
+      axios.post('http://localhost:8080/storeGameData', gameData)
         .then((response) => {
           console.log('Game data stored successfully');
         })

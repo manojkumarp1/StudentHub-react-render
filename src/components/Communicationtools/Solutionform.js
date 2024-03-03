@@ -14,7 +14,7 @@ function SolutionForm() {
     }
   }, []);
   const updateSolution = () => {
-    axios.put(`http://localhost:3001/updatesolution/${id}`, { solution })
+    axios.put(`http://localhost:8080/updateSolution/${id}`, { solution })
       .then(response => {
         console.log(response.data);
       })
