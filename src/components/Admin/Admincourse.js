@@ -16,7 +16,7 @@ function Admincourse() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/getCourses")
+      .get("https://studenthub-wa9t.onrender.com/getCourses")
       .then((res) => {
         if (res.data.Status === "Success") {
           console.log(res.data.Result);
@@ -49,7 +49,7 @@ function Admincourse() {
     const handleDelete = id => {
       const deleteCourse = async () => {
         try {
-          const res = await axios.delete(`http://localhost:8080/deleteCourse/${id}`);
+          const res = await axios.delete(`https://studenthub-wa9t.onrender.com/deleteCourse/${id}`);
           if (res.data.Status === 'Success') {
             window.location.reload(true);
           } else {

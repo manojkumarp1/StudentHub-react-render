@@ -10,7 +10,7 @@ function Progress() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8080/progress`)
+            .get(`https://studenthub-wa9t.onrender.com/progress`)
             .then((res) => {
                 if (res.data.Status === "Success") {
                     const initializedData = res.data.Result.map((item) => ({
@@ -46,7 +46,7 @@ function Progress() {
 
         // Update progress on the server
         axios
-            .put(`http://localhost:8080/progress/${id}`, {
+            .put(`https://studenthub-wa9t.onrender.com/progress/${id}`, {
                 progress: Math.min(1, data.find((item) => item.id === id).progress + randomPercentage / 100),
             })
             .then((res) => {

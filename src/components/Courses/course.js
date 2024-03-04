@@ -11,7 +11,7 @@ function Course() {
   const [searchQuery, setSearchQuery] = useState("");
   const fetchCourseData = () => {
     axios
-      .get("http://localhost:8080/getCourses")
+      .get("https://studenthub-wa9t.onrender.com/getCourses")
       .then((res) => {
         if (res.data.Status === "Success") {
           console.log(res.data.Result);

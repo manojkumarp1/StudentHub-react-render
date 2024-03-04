@@ -77,7 +77,7 @@ function Signup() {
         // Validate the form
         if (validate()) {
             // Proceed with the POST request
-            axios.post('http://localhost:8080/signup', values)
+            axios.post('http://studenthub-wa9t.onrender.com/signup', values)
                 .then(res => {
                     navigate("/login");
                 })

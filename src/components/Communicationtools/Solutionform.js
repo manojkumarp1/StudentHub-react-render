@@ -14,7 +14,7 @@ function SolutionForm() {
     }
   }, []);
   const updateSolution = () => {
-    axios.put(`http://localhost:8080/updateSolution/${id}`, { solution })
+    axios.put(`https://studenthub-wa9t.onrender.com/updateSolution/${id}`, { solution })
       .then(response => {
         console.log(response.data);
       })

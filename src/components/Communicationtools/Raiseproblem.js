@@ -12,7 +12,7 @@ function Raiseproblem() {
 
 
   useEffect(() => {
-    axios.get("http://localhost:8080/getProblems")
+    axios.get("https://studenthub-wa9t.onrender.com/getProblems")
     .then((res) => {
       const result = res.data.Result;
   

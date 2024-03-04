@@ -89,7 +89,7 @@ function Quizjava() {
         student: localStorage.getItem('studentId'),
       };
 
-      axios.post('http://localhost:8080/storeGameData', gameData)
+      axios.post('https://studenthub-wa9t.onrender.com/storeGameData', gameData)
         .then((response) => {
           console.log('Game data stored successfully');
         })

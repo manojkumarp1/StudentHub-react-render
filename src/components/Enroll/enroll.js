@@ -36,7 +36,7 @@ function Enrollform() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8080/getCourse/' + id)
+      .get('https://studenthub-wa9t.onrender.com/getCourse/' + id)
       .then(res => {
           // eslint-disable-next-line
         const { coursename, description, duration } = res.data.Result;
@@ -55,7 +55,7 @@ function Enrollform() {
     const studentId = localStorage.getItem('studentId');
     if (studentId) {
       axios
-        .get(`http://localhost:8080/students/${studentId}`)
+        .get(`https://studenthub-wa9t.onrender.com/students/${studentId}`)
         .then((response) => {
           if (response.data.Status === 'Success') {
             setUserData(response.data.data);
@@ -78,7 +78,7 @@ function Enrollform() {
     event.preventDefault();
 
     axios
-      .post('http://localhost:8080/enrollCourse', formValues)
+      .post('https://studenthub-wa9t.onrender.com/enrollCourse', formValues)
       .then((res) => {
         navigate('/progress/'+formValues.name);
       })

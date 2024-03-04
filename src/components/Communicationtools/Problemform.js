@@ -28,7 +28,7 @@ function Problemform() {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-      .post(`http://localhost:8080/addProblem`, formValues)
+      .post(`https://studenthub-wa9t.onrender.com/addProblem`, formValues)
       .then(res => {
         if (res.data.status === 'Success') {
           navigate('/tools');
